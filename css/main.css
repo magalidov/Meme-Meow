@@ -1,0 +1,62 @@
+/* BASE */
+*{
+    box-sizing: border-box;
+}
+html{
+    font-family: fantasy;
+}
+body{
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    line-height: 1;
+    font-weight: normal;
+}
+h2 {
+    font-size: 1.875rem;
+    margin-bottom: 26px;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    /* width: 100%; */
+}
+/* FONTS */
+@font-face {
+    font-family: ubuntu;
+    src: url(/fonts/Ubuntu/Ubuntu-Light.ttf);
+}
+/* HELPERS */
+.grid{
+    display:grid;
+}
+
+/* HEADER */
+.main-header{
+
+}
+.logo{
+
+}
+.main-nav{
+
+}
+/* MAIN */
+.main-container{
+    
+}
+/* GALLERY */
+.pics-gallery{
+
+}
+/* EDITOR */
+.meme-editor{
+
+}
+/* FOOTER */
+.main-footer{
+    text-align: center;
+}
