@@ -1,8 +1,6 @@
 'use strict'
 console.log('Service');
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 };
-
 var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] },
 { id: 2, url: 'img/2.jpg', keywords: ['happy'] },
 { id: 3, url: 'img/3.jpg', keywords: ['happy'] },
@@ -22,24 +20,26 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] },
 { id: 17, url: 'img/17.jpg', keywords: ['happy'] },
 { id: 18, url: 'img/18.jpg', keywords: ['happy'] }
 ];
+var gKeywords = { 'happy': 12, 'funny puk': 1 };
+var gMeme = {}
 
-var gMeme = {
-    selectedImgId: 4,
-    selectedLineIdx: { x: 100, y: 70 },
-    lines: [{ txt: 'Your Joke', size: 60, x: 100, y: 70, align: 'left', fill: 'black', stroke: 'white' }]
-}
-
-
-function setMeme(imgId) {
+function setMeme(imgId,canvasWidth, canvasHeight) {
     gMeme = {
         selectedImgId: imgId,
-        selectedLineIdx: { x: 100, y: 70 },
-        lines: [{ txt: 'Your Joke', size: 60, x: 100, y: 70, align: 'left', fill: 'black', stroke: 'white' }]
+        selectedLineIdx: { x: 100 , y: 70 },
+        lines: [{ txt: 'Your Joke', size: 60, x: (canvasWidth/2)-((canvasWidth/2)/2), y: 70, align: 'left', fill: 'black', stroke: 'white' },
+        { txt: 'Your Joke', size: 60, x: (canvasWidth/2)-((canvasWidth/2)/2), y: canvasHeight-30, align: 'left', fill: 'black', stroke: 'white' }]
     }
 }
+
+
 function getMeme(){
     return gMeme
 }
+function changeMemeLine(set,content){
+    gMeme.lines[0][set]= (set!=='size')? content : gMeme.lines[0][set]+content
+}
+
 
 
 

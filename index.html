@@ -26,8 +26,26 @@
                     ontouchstart="" ontouchend="" ontouchmove="" id="my-canvas"
                     style="border: 1px solid black;"></canvas>
             </div>
-            editor
             <div class="tool-box">
+                editor
+                <br>
+                <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt" placeholder="Your Joke" type="text">
+                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill" title="Fill Color" type="color">
+                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke" title="Stroke Color" type="color">
+                <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">+</button>
+                <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">-</button>
+
+                <select onchange="setShape(this.value)" value="line">
+                    <option value="line">Line</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="rect">Rect</option>
+                    <option value="arc">Arc</option>
+                    <option value="perspective">Perspective</option>
+                    <option value="text">Text</option>
+                </select>
+                <a href="#" class="save" onclick="onDownloadCanvas(this)" download="">Save</a>
+                <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
+                <a href="#" class="clear" onclick="onClearCanvas()">Clear</a>                
 
             </div>
 
