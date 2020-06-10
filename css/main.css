@@ -36,6 +36,9 @@ canvas{
 /* HELPERS */
 .grid{
     display:grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    grid-auto-rows: 200px;
 }
 .flex{
     display:flex
@@ -58,6 +61,12 @@ canvas{
 /* GALLERY */
 .pics-gallery{
 
+}
+.pics-gallery div{
+    display: block;
+    background-position: center center;
+    background-size: cover;
+    height: 100%;
 }
 /* EDITOR */
 .meme-editor{

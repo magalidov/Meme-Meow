@@ -21,7 +21,7 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] },
 { id: 18, url: 'img/18.jpg', keywords: ['happy'] }
 ];
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
-var gMeme = {}
+var gMeme = {};
 
 function setMeme(imgId,canvasWidth, canvasHeight) {
     gMeme = {
@@ -29,16 +29,19 @@ function setMeme(imgId,canvasWidth, canvasHeight) {
         selectedLineIdx: { x: 100 , y: 70 },
         lines: [{ txt: 'Your Joke', size: 60, x: (canvasWidth/2)-((canvasWidth/2)/2), y: 70, align: 'left', fill: 'black', stroke: 'white' },
         { txt: 'Your Joke', size: 60, x: (canvasWidth/2)-((canvasWidth/2)/2), y: canvasHeight-30, align: 'left', fill: 'black', stroke: 'white' }]
-    }
-}
+    };
+};
 
+function getImages(){
+    return gImgs;
+};
 
 function getMeme(){
-    return gMeme
-}
+    return gMeme;
+};
 function changeMemeLine(set,content){
-    gMeme.lines[0][set]= (set!=='size')? content : gMeme.lines[0][set]+content
-}
+    gMeme.lines[0][set]= (set!=='size')? content : gMeme.lines[0][set]+content;
+};
 
 
 
