@@ -1,9 +1,14 @@
+/* FONTS */
+@font-face {
+    font-family: impact;
+    src: url(../fonts/impact.ttf);
+}
 /* BASE */
 *{
     box-sizing: border-box;
 }
 html{
-    font-family: fantasy;
+    font-family: impact ,sans-serif;
 }
 body{
     margin: 0;
@@ -24,14 +29,16 @@ a {
 img {
     /* width: 100%; */
 }
-/* FONTS */
-@font-face {
-    font-family: ubuntu;
-    src: url(/fonts/Ubuntu/Ubuntu-Light.ttf);
+canvas{
+    display: block;
 }
+
 /* HELPERS */
 .grid{
     display:grid;
+}
+.flex{
+    display:flex
 }
 
 /* HEADER */
@@ -54,7 +61,13 @@ img {
 }
 /* EDITOR */
 .meme-editor{
-
+    width: 90vh;
+    /* height: 90vh; */
+}
+.canvas-container{
+    margin: auto;
+    width: 500px;
+    height: 500px;
 }
 /* FOOTER */
 .main-footer{
