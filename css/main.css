@@ -46,8 +46,8 @@ canvas{
 }
 .grid{
     display:grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(295px,1fr));
 }
 /* FLEX */
 .flex{
@@ -65,11 +65,13 @@ canvas{
     margin: 10px auto;
 }
 .logo{
-
 }
 /* NAV */
 .main-nav{
-    
+}
+.main-nav img{
+    width: 1.5rem;
+    margin: 0.312rem;
 }
 .nav-btn{
     outline: none;
@@ -79,11 +81,9 @@ canvas{
 }
 /* MAIN */
 .main-container{
-    
 }
 /* GALLERY */
 .pics-gallery{
-    
 }
 .pics-gallery div{
     display: block;
@@ -96,26 +96,35 @@ canvas{
 .meme-editor{
     display: none;
 }
-.txt-input{
-    width: 10.562rem;
-    height: 1.437rem;
-    border: 1.5px black solid;
-}
-.txt-modifiers button,.txt-modifiers input{
+/* TOOLS */
+.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
     background-color: #fff;
     border: 1.5px black solid;
     height: 1.437rem;
-    margin: 0.312rem 0.312rem 0.312rem 0;
+    margin: 0.250rem;
+}
+.txt-input{
+    width: 10rem;
+}
+.color-input{
+    width: 2.25rem; 
+}
+.txt-modifiers select{
+    width: 4.5rem; 
+    outline: none;
 }
 .txt-modifiers img{
     height: 100%;
 }
+.txt-modifiers button{
+    width: 2rem;
+    font-size: 1rem;
+}
+/* CANVAS */
 .aspect-ratio-holder{
     position: relative;
     width: 100%;
     padding-top: 100%;
-
-    /* margin: auto; */
 }
 .canvas-container{
     position:  absolute;
@@ -125,7 +134,7 @@ canvas{
     right: 0;
 }
 canvas{
-        border: 3px black solid;
+    border: 3px black solid;
     
 }
 /* FOOTER */
@@ -133,7 +142,7 @@ canvas{
     text-align: center;
 }
 
-@media (max-width:25rem){
+@media (max-width:27rem){
 .main-nav.flex{
     align-self: flex-end;
     flex-flow: column;
@@ -142,5 +151,4 @@ canvas{
 .main-header.flex{
     align-items: flex-start;
 }
-
 }

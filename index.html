@@ -14,6 +14,7 @@
 
         <h1 class="logo">Meme Meow</h1>
         <nav class="main-nav flex">
+            <img src="./icons/search-icon.png">
             <button onclick="onShowGallery('new')" class="nav-btn">New</button>
             <button class="nav-btn">About</button>
             <button onclick="onShowGallery('saved')" class="nav-btn">Memes</button>
@@ -42,27 +43,53 @@
 
 
             <div class="tool-box flex-col">
-                <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
-                    placeholder="Your Joke" type="text">
                 <div class="txt-modifiers flex">
-                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
-                        title="Fill Color" type="color">
-                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
-                        title="Stroke Color" type="color">
-                    <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">
-                        <img src="./icons/increase font - icon.png">
+                    <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
+                        placeholder="Your Joke" type="text">
+                    <button onclick="">
+                        <img src="./icons/add.png">
                     </button>
-                    <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">
-                        <img src="./icons/decrease font - icon.png">
+                    <button onclick="">
+                        <img src="./icons/trash.png">
+                    </button>
+                    <button onclick="">
+                        <img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png">
                     </button>
                 </div>
-                <select onchange="setShape(this.value)" value="line">
+                <div class="txt-modifiers flex">
+                    <select onchange="onChangeCurrLine(this.dataset.type,this.value)" value="impact">
+                        <option>Impact</option>
+                    </select>
+                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
+                        title="Fill Color" type="color" class="color-input">
+                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
+                        title="Stroke Color" type="color" class="color-input">
+                    <button onclick="">
+                        <img src="./icons/align-to-left.png">
+                    </button>
+                    <button onclick="">
+                        <img src="./icons/center-text-alignment.png">
+                    </button>
+                    <button onclick="">
+                        <img src="./icons/align-to-right.png">
+                    </button>
 
-                </select>
-                <br>
-                <a href="#" class="clear" onclick="onSaveMeme()">Save</a>
-                <a href="#" class="save" onclick="onDownloadMeme(this)" download="">Download</a>
-                <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
+                </div>
+                <div class="txt-modifiers flex">
+                <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">
+                    A+
+                </button>
+                <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">
+                    A-
+                </button>
+
+
+            </div>
+
+            <br>
+            <a href="#" class="clear" onclick="onSaveMeme()">Save</a>
+            <a href="#" class="save" onclick="onDownloadMeme(this)" download="">Download</a>
+            <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
 
             </div>
 
