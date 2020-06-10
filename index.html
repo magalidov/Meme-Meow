@@ -10,9 +10,15 @@
 
 <body onload="onInit()">
 
-    <header class="main-header">
-        <h1 class="logo">Meme Meow</h1>
-        <nav class="main-nav"></nav>
+    <header class="main-header container flex">
+        
+            <h1 class="logo">Meme Meow</h1>
+            <nav class="main-nav flex">
+                <button onclick="onShowGallery()" class="nav-btn">Gallery</button>
+                <button class="nav-btn">Memes</button>
+                <button class="nav-btn">About</button>
+            </nav>
+        
     </header>
 
     <section class="main-container container">

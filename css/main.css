@@ -14,15 +14,20 @@ body{
     margin: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
+    margin: 0;
     line-height: 1;
     font-weight: normal;
+}
+h1{
+    font-size: 4.5rem;
 }
 a {
     color: inherit;
     text-decoration: none;
 }
-img {
+button{
+    font-family: inherit;
+    cursor: pointer;
 }
 canvas{
     display: block;
@@ -30,6 +35,7 @@ canvas{
 /* HELPERS */
 .container{
     width: 95vw;
+    margin: auto;
 }
 /* GRID */
 .grid-gallery{
@@ -43,21 +49,34 @@ canvas{
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
 }
-
+/* FLEX */
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 /* HEADER */
 .main-header{
-
+    
 }
 .logo{
 
 }
+/* NAV */
 .main-nav{
-
+    
+}
+.nav-btn{
+    outline: none;
+    border: none;
+    background-color: white;
+    font-size: 1.5rem;
 }
 /* MAIN */
 .main-container{
     margin: 0 auto;
     width: 95vw;
+    
 }
 /* GALLERY */
 .pics-gallery{
@@ -67,20 +86,18 @@ canvas{
     display: block;
     background-position: center center;
     background-size: cover;
+    border-radius: 10px;
     height: 100%;
 }
 /* EDITOR */
 .meme-editor{
     display: none;
 }
-.try{
-    /* width: 100%;
-    height: 100%; */
-}
 .aspect-ratio-holder{
     position: relative;
-    width: 100%;
-    padding-top: 100%;
+    width: 80%;
+    padding-top: 80%;
+    /* margin: auto; */
 }
 .canvas-container{
 position:  absolute;

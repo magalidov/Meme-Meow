@@ -26,6 +26,10 @@ window.addEventListener('resize', function (event) {
     resizeCanvas();
 });
 
+function onShowGallery(){
+    document.querySelector('.pics-gallery').style.display = 'grid';
+    document.querySelector('.meme-editor').style.display = 'none';
+};
 
 function onSetMeme(imgId) {
     document.querySelector('.pics-gallery').style.display = 'none';
