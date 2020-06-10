@@ -24,14 +24,6 @@ window.addEventListener('resize', function (event) {
     resizeCanvas();
 });
 
-
-function onShowGallery(gallery) {
-    if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
-    renderGallry(gallery) 
-    document.querySelector('.pics-gallery').style.display = 'grid';
-    document.querySelector('.meme-editor').style.display = 'none';
-};
-
 // SAVING OPTIONS
 function onSaveMeme(){
     const data = gElCanvas.toDataURL();
@@ -62,8 +54,14 @@ function onChangeCurrLine(type, content) {
     renderMeme();
 };
 
-
 // RENDER GALLERY
+function onShowGallery(gallery) {
+    if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
+    renderGallry(gallery) 
+    document.querySelector('.pics-gallery').style.display = 'grid';
+    document.querySelector('.meme-editor').style.display = 'none';
+};
+
 function renderGallry(gallery) {
     var imgs = (gallery==='new') ? getImages() : [loadFromStorage('meows')]
     document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')

@@ -11,26 +11,22 @@
 <body onload="onInit()">
 
     <header class="main-header container flex">
-
         <h1 class="logo">Meme Meow</h1>
+
         <nav class="main-nav flex">
             <img src="./icons/search-icon.png">
             <button onclick="onShowGallery('new')" class="nav-btn">New</button>
             <button class="nav-btn">About</button>
             <button onclick="onShowGallery('saved')" class="nav-btn">Memes</button>
         </nav>
-
     </header>
 
     <section class="main-container container">
 
         <section class="pics-gallery grid-gallery">
-            <!-- Pictures Grid -->
+            <!-- ****** Render Pictures ****** -->
         </section>
 
-        <section class="saved-gallery grid-gallery" hidden>
-            <!-- Memes Grid -->
-        </section>
 
         <section class="meme-editor grid" hidden>
 
@@ -41,8 +37,8 @@
                 </div>
             </div>
 
-
             <div class="tool-box flex-col">
+
                 <div class="txt-modifiers flex">
                     <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
                         placeholder="Your Joke" type="text">
@@ -73,40 +69,34 @@
                     <button onclick="">
                         <img src="./icons/align-to-right.png">
                     </button>
-
                 </div>
                 <div class="txt-modifiers flex">
-                <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">
-                    A+
-                </button>
-                <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">
-                    A-
-                </button>
+                    <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">
+                        A+
+                    </button>
+                    <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">
+                        A-
+                    </button>
+                </div>
 
-
-            </div>
-
-            <br>
-            <a href="#" class="clear" onclick="onSaveMeme()">Save</a>
-            <a href="#" class="save" onclick="onDownloadMeme(this)" download="">Download</a>
-            <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
+                <a href="#" class="clear" onclick="onSaveMeme()">Save</a>
+                <a href="#" class="save" onclick="onDownloadMeme(this)" download="">Download</a>
+                <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
 
             </div>
-
         </section>
-
     </section>
+
 
     <footer class="main-footer">
     </footer>
 
 
 
-
-    <script src="js/mewo-storage.js"></script>
-    <script src="js/mewo-utils.js"></script>
-    <script src="js/mewo-service.js"></script>
-    <script src="js/mewo-controller.js"></script>
+    <script src="js/meow-storage.js"></script>
+    <script src="js/meow-utils.js"></script>
+    <script src="js/meow-service.js"></script>
+    <script src="js/meow-controller.js"></script>
 </body>
 
 </html>

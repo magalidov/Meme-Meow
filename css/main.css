@@ -60,12 +60,16 @@ canvas{
     flex-flow: column;
     align-items: flex-start;
 }
+
+/* BODY */
+
 /* HEADER */
 .main-header{
     margin: 10px auto;
 }
 .logo{
 }
+
 /* NAV */
 .main-nav{
 }
@@ -79,9 +83,11 @@ canvas{
     background-color: white;
     font-size: 1.5rem;
 }
+
 /* MAIN */
 .main-container{
 }
+
 /* GALLERY */
 .pics-gallery{
 }
@@ -92,6 +98,7 @@ canvas{
     border-radius: 10px;
     height: 100%;
 }
+
 /* EDITOR */
 .meme-editor{
     display: none;
@@ -127,6 +134,7 @@ canvas{
     padding-top: 100%;
 }
 .canvas-container{
+    max-height: 90%;
     position:  absolute;
     top: 0;
     left: 0;
@@ -135,13 +143,22 @@ canvas{
 }
 canvas{
     border: 3px black solid;
-    
 }
+
 /* FOOTER */
 .main-footer{
     text-align: center;
 }
 
+/* MEDIA QUERIES */
+
+/* TABLET */
+@media (max-width:45rem){
+.canvas-container{
+    max-height: 100%;
+}
+}
+/* SMARTPHONE */
 @media (max-width:27rem){
 .main-nav.flex{
     align-self: flex-end;
