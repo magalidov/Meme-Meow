@@ -9,14 +9,12 @@ function onInit() {
     gOnEdit = false;
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    renderGallry();
+    renderGallry('new');
     resizeCanvas();
 }
 function resizeCanvas() {
     if (gOnEdit) return
     var elContainer = document.querySelector('.canvas-container');
-    console.log('elContainer.offsetWidth:', elContainer.offsetWidth)
-    console.log('elContainer.offsetHeight:', elContainer.offsetHeight)
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
     var meme = getMeme()
@@ -26,11 +24,32 @@ window.addEventListener('resize', function (event) {
     resizeCanvas();
 });
 
-function onShowGallery(){
+
+function onShowGallery(gallery) {
+    if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
+    renderGallry(gallery) 
     document.querySelector('.pics-gallery').style.display = 'grid';
     document.querySelector('.meme-editor').style.display = 'none';
 };
 
+// SAVING OPTIONS
+function onSaveMeme(){
+    const data = gElCanvas.toDataURL();
+    var meme = getMeme()
+    meme.url = data
+    saveToStorage('meows', meme)
+}
+function onDownloadMeme(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my_img';
+}
+function onFacebookShare(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = `https://www.facebook.com/sharer/sharer.php?u=http://${data}`
+}
+
+// EDIT MEME
 function onSetMeme(imgId) {
     document.querySelector('.pics-gallery').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
@@ -45,8 +64,8 @@ function onChangeCurrLine(type, content) {
 
 
 // RENDER GALLERY
-function renderGallry() {
-    var imgs = getImages()
+function renderGallry(gallery) {
+    var imgs = (gallery==='new') ? getImages() : [loadFromStorage('meows')]
     document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
 }
 
@@ -73,7 +92,7 @@ function renderMeme() {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
         for (var i = 0; i < meme.lines.length; i++) {
             var currLine = meme.lines[i];
-            hilightEdit(currLine.x, currLine.y, currLine.size);
+            if (meme.selectedLineIdx===i) hilightEdit(currLine.x, currLine.y, currLine.size);
             addText(currLine.txt, currLine.x, currLine.y, currLine.size, currLine.align, currLine.fill, currLine.stroke);
         };
     };

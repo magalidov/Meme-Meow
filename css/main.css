@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 h1{
-    font-size: 4.5rem;
+    font-size: 4rem;
 }
 a {
     color: inherit;
@@ -34,20 +34,20 @@ canvas{
 }
 /* HELPERS */
 .container{
-    width: 95vw;
+    width: 90vw;
     margin: auto;
 }
 /* GRID */
 .grid-gallery{
     display:grid;
     grid-gap: 5px;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
     grid-auto-rows: 200px;
 }
 .grid{
     display:grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
 }
 /* FLEX */
 .flex{
@@ -55,9 +55,14 @@ canvas{
     justify-content: space-between;
     align-items: flex-end;
 }
+.flex-col{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
 /* HEADER */
 .main-header{
-    
+    margin: 10px auto;
 }
 .logo{
 
@@ -74,8 +79,6 @@ canvas{
 }
 /* MAIN */
 .main-container{
-    margin: 0 auto;
-    width: 95vw;
     
 }
 /* GALLERY */
@@ -93,20 +96,51 @@ canvas{
 .meme-editor{
     display: none;
 }
+.txt-input{
+    width: 10.562rem;
+    height: 1.437rem;
+    border: 1.5px black solid;
+}
+.txt-modifiers button,.txt-modifiers input{
+    background-color: #fff;
+    border: 1.5px black solid;
+    height: 1.437rem;
+    margin: 0.312rem 0.312rem 0.312rem 0;
+}
+.txt-modifiers img{
+    height: 100%;
+}
 .aspect-ratio-holder{
     position: relative;
-    width: 80%;
-    padding-top: 80%;
+    width: 100%;
+    padding-top: 100%;
+
     /* margin: auto; */
 }
 .canvas-container{
-position:  absolute;
+    position:  absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
 }
+canvas{
+        border: 3px black solid;
+    
+}
 /* FOOTER */
 .main-footer{
     text-align: center;
+}
+
+@media (max-width:25rem){
+.main-nav.flex{
+    align-self: flex-end;
+    flex-flow: column;
+    align-items: flex-start;
+}
+.main-header.flex{
+    align-items: flex-start;
+}
+
 }
