@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Meow</title>
 </head>
+
 <body onload="onInit()">
-    
+
     <header class="main-header">
         <h1 class="logo">Meme Meow</h1>
         <nav class="main-nav"></nav>
     </header>
 
-    <section class="main-container">
+    <section class="main-container container">
 
-        <section class="pics-gallery grid">
+        <section class="pics-gallery grid-gallery">
             <!-- Pictures Grid -->
         </section>
 
-        <section class="meme-editor flex">
-            <div class="canvas-container">
-                canvas
-                <canvas onmousedown="" onmousemove="" onmouseup=""
-                    ontouchstart="" ontouchend="" ontouchmove="" id="my-canvas"
-                    style="border: 1px solid black;"></canvas>
+        <section class="meme-editor grid" hidden>
+
+            <div class="aspect-ratio-holder">
+                <div class="canvas-container">
+                    <canvas onmousedown="" onmousemove="" onmouseup="" ontouchstart="" ontouchend="" ontouchmove=""
+                        id="my-canvas" style="border: 1px solid black;"></canvas>
+                </div>
             </div>
+
+
             <div class="tool-box">
                 editor
                 <br>
-                <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt" placeholder="Your Joke" type="text">
-                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill" title="Fill Color" type="color">
-                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke" title="Stroke Color" type="color">
+                <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
+                    placeholder="Your Joke" type="text">
+                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
+                    title="Fill Color" type="color">
+                <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
+                    title="Stroke Color" type="color">
                 <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">+</button>
                 <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">-</button>
 
@@ -43,14 +51,14 @@
                     <option value="perspective">Perspective</option>
                     <option value="text">Text</option>
                 </select>
+
                 <a href="#" class="save" onclick="onDownloadCanvas(this)" download="">Save</a>
                 <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
-                <a href="#" class="clear" onclick="onClearCanvas()">Clear</a>                
+                <a href="#" class="clear" onclick="onClearCanvas()">Clear</a>
 
             </div>
 
         </section>
-
 
     </section>
 
@@ -61,12 +69,10 @@
 
 
 
-
-
-
     <script src="js/mewo-storage.js"></script>
     <script src="js/mewo-utils.js"></script>
     <script src="js/mewo-service.js"></script>
     <script src="js/mewo-controller.js"></script>
 </body>
+
 </html>

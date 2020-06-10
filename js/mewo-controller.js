@@ -9,19 +9,18 @@ function onInit() {
     gOnEdit = false;
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
+    renderGallry();
     resizeCanvas();
-
-    renderGallry()
-
-    setMeme(4, gElCanvas.width, gElCanvas.height);
-    var meme = getMeme();
-    renderMeme(meme);
 }
 function resizeCanvas() {
     if (gOnEdit) return
     var elContainer = document.querySelector('.canvas-container');
+    console.log('elContainer.offsetWidth:', elContainer.offsetWidth)
+    console.log('elContainer.offsetHeight:', elContainer.offsetHeight)
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
+    var meme = getMeme()
+    if (meme) { setMeme(meme.selectedImgId, gElCanvas.width, gElCanvas.height); renderMeme(); }
 }
 window.addEventListener('resize', function (event) {
     resizeCanvas();
@@ -29,22 +28,22 @@ window.addEventListener('resize', function (event) {
 
 
 function onSetMeme(imgId) {
+    document.querySelector('.pics-gallery').style.display = 'none';
+    document.querySelector('.meme-editor').style.display = 'grid';
     setMeme(imgId, gElCanvas.width, gElCanvas.height);
-    var meme = getMeme();
-    renderMeme(meme);
+    resizeCanvas()
 };
 function onChangeCurrLine(type, content) {
+    gOnEdit = true
     changeMemeLine(type, content);
-    var meme = getMeme();
-    renderMeme(meme);
+    renderMeme();
 };
 
 
 // RENDER GALLERY
-function renderGallry(){
+function renderGallry() {
     var imgs = getImages()
-    var strHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
-    document.querySelector('.pics-gallery').innerHTML = strHTML
+    document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
 }
 
 // RENDER MEME EDITOR
@@ -62,7 +61,8 @@ function hilightEdit(x, y, size) {
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     gCtx.fillRect(0, y - size, gElCanvas.width, size + 20);
 };
-function renderMeme(meme) {
+function renderMeme() {
+    var meme = getMeme()
     var elImg = new Image();
     elImg.src = `./img/${meme.selectedImgId}.jpg`;
     elImg.onload = () => {

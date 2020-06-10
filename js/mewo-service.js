@@ -21,7 +21,8 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] },
 { id: 18, url: 'img/18.jpg', keywords: ['happy'] }
 ];
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
-var gMeme = {};
+var gMeme;
+
 
 function setMeme(imgId,canvasWidth, canvasHeight) {
     gMeme = {
