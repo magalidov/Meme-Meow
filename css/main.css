@@ -12,6 +12,11 @@
     src: url(../fonts/hotdog.ttf);
 }
 @font-face {
+    font-family: lato;
+    src: url(../fonts/lato.ttf);
+    
+}
+@font-face {
     font-family: impact;
     src: url(../fonts/impact.ttf);
     
@@ -38,6 +43,7 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
 button{
     font-family: inherit;
     cursor: pointer;
@@ -66,6 +72,7 @@ canvas{
     grid-gap: 25px;
     grid-template-columns: repeat(auto-fit, minmax(285px,1fr));
 }
+
 /* FLEX */
 .flex{
     display: flex;
@@ -76,10 +83,13 @@ canvas{
     display: flex;
     flex-flow: column;
     align-items: flex-start;
+    color: rgba(124, 124, 124, 0.863);
 }
-.flex-search{
+.flex-reverse{
     display: flex;
-    justify-content: flex-end;
+    flex-flow: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
 /* BODY */
 
@@ -109,10 +119,23 @@ canvas{
 }
 /* SEARCH */
 .search-box{
-    
+    flex-wrap: wrap;
+    margin-bottom: 10px ;
+}
+.search-box > a{
+    align-self: center;
+    display:inline-block;
+    margin-left: 0.8rem;
+    cursor: pointer;
+    font-family: sans-serif;
 }
 .search-input{
+    align-self: flex-start;
     width: 16rem;
+    margin: 0.8rem 0 0.8rem 0.8rem;
+    background-color: #fff;
+    border: 1.5px black solid;
+    height: 1.5rem;
 }
 /* GALLERY */
 .pics-gallery{
@@ -131,7 +154,7 @@ canvas{
     display: none;
 }
 /* TOOLS */
-.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input, .search-input{
+.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
     background-color: #fff;
     border: 1.5px black solid;
     height: 1.5rem;

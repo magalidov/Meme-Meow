@@ -93,19 +93,18 @@ function onStartSearch(key) {
 function onShowSearchBox(){
     document.querySelector('.serach-box').style.display='flex'
 }
-function renderSearchBox(){  // IN PROGRESS
-    // var keys = getSearchKeys()
-    // var keysHTML=''
-    // for (var key in keys){
-    //     if (keys[key]>1){
-    //         keysHTML+= `<span class="key-word">${key}</span>`
-    //     }
-    // }
-    // console.log('keysHTML:', keysHTML)
-    // var strHTML = `<input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
-    // <br>
-    // ${keysHTML}`
-    // document.querySelector('.serach-box').innerHTML = strHTML
+function renderSearchBox(){  
+    var keys = getSearchKeys()
+    var keysHTML=''
+    for (var key in keys){
+        if (keys[key]>3){
+            keysHTML+= `<a onclick="onStartSearch('${key}')" style="color:rgba(1${10-keys[key]}0, 1${10-keys[key]}0, 1${10-keys[key]}0); font-size:${keys[key]*0.20}rem" class="key-word">${key}</a>`
+        }
+    }
+    console.log('keysHTML:', keysHTML)
+    var strHTML = `<input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
+    ${keysHTML}`
+    document.querySelector('.search-box').innerHTML = strHTML
 }
 
 // RENDER GALLERY
