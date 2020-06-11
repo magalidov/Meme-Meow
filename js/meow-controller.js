@@ -1,12 +1,12 @@
 'use strict'
 console.log('Controller');
 
-var gOnEdit;
+var gDrag=false
+var gOnEdit=false;
 var gElCanvas;
 var gCtx;
 
 function onInit() {
-    gOnEdit = false;
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
     renderGallry('new');
@@ -72,10 +72,12 @@ function onSwitchLine() {
 }
 // ADD REMOVE
 function onAddLine() {
+    gOnEdit = true
     newLine(gElCanvas.width, gElCanvas.height)
     renderMeme()
 }
 function onDeleteLine() {
+    gOnEdit = true
     deleteCurrLine()
     renderMeme()
 }
@@ -122,8 +124,8 @@ function hilightEdit(x, y, size) {
 };
 
 // DRAG OBJECTS
-
 function onPickObject(ev) {
+    gDrag=true
     if (ev.type === 'touchstart' || ev.type === 'touchend') {
         ev.preventDefault()
         offsetX = ev.touches[0].clientX
@@ -139,6 +141,10 @@ function onPickObject(ev) {
     renderMeme()
 }
 function onDrag(ev) {
+    var meme = getMeme()
+    if (gDrag===false) return
+    if (meme.selectedLineIdx<0) return
+    gOnEdit = true
     if (ev.type === 'touchmove' || ev.type === 'touchstart') {
         ev.preventDefault()
         offsetX = ev.touches[0].clientX
@@ -146,4 +152,11 @@ function onDrag(ev) {
     } else {
         var { offsetX, offsetY } = ev;
     }
+    var meme = getMeme()
+    meme.lines[meme.selectedLineIdx].x = offsetX
+    meme.lines[meme.selectedLineIdx].y = offsetY
+    renderMeme()
+}
+function onDropObject(event){
+    gDrag=false
 }
