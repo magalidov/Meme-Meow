@@ -25,7 +25,7 @@ window.addEventListener('resize', function (event) {
 });
 
 // SAVING OPTIONS
-function onSaveMeme(){
+function onSaveMeme() {
     const data = gElCanvas.toDataURL();
     var meme = getMeme()
     meme.url = data
@@ -48,27 +48,53 @@ function onSetMeme(imgId) {
     setMeme(imgId, gElCanvas.width, gElCanvas.height);
     resizeCanvas()
 };
-function onChangeCurrLine(type, content) {
+function onEditCurrLine(type, content) {
     gOnEdit = true
-    changeMemeLine(type, content);
+    editMemeLine(type, content);
     renderMeme();
 };
+function onSwitchLine() {
+    onSwitchLine()
+    renderMeme()
+}
+
+// ADD REMOVE
+function onAddLine(){
+    newLine(gElCanvas.width, gElCanvas.height)
+    renderMeme()
+}
+function onDeleteLine() {
+    deleteCurrLine()
+    renderMeme()
+}
 
 // RENDER GALLERY
 function onShowGallery(gallery) {
     if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
-    renderGallry(gallery) 
+    renderGallry(gallery)
     document.querySelector('.pics-gallery').style.display = 'grid';
     document.querySelector('.meme-editor').style.display = 'none';
 };
-
 function renderGallry(gallery) {
-    var imgs = (gallery==='new') ? getImages() : [loadFromStorage('meows')]
+    var imgs = (gallery === 'new') ? getImages() : [loadFromStorage('meows')]
     document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
 }
 
 // RENDER MEME EDITOR
-function addText(text, x, y, size,font, align, fill, stroke, strokeWidth) {
+function renderMeme() {
+    var meme = getMeme()
+    var elImg = new Image();
+    elImg.src = `./${meme.selectedImgUrl}`;
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
+        for (var i = 0; i < meme.lines.length; i++) {
+            var currLine = meme.lines[i];
+            if (meme.selectedLineIdx === i) hilightEdit(currLine.x, currLine.y, currLine.size);
+            addText(currLine.txt, currLine.x, currLine.y, currLine.size, currLine.font, currLine.align, currLine.fill, currLine.stroke);
+        };
+    };
+};
+function addText(text, x, y, size, font, align, fill, stroke, strokeWidth) {
     gCtx.font = `${size}px ${font}`;
     gCtx.textAlign = `${align}`;
     gCtx.fillStyle = `${fill}`;
@@ -81,17 +107,4 @@ function hilightEdit(x, y, size) {
     gCtx.beginPath();
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     gCtx.fillRect(0, y - size, gElCanvas.width, size + 20);
-};
-function renderMeme() {
-    var meme = getMeme()
-    var elImg = new Image();
-    elImg.src = `./${meme.selectedImgUrl}`;
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
-        for (var i = 0; i < meme.lines.length; i++) {
-            var currLine = meme.lines[i];
-            if (meme.selectedLineIdx===i) hilightEdit(currLine.x, currLine.y, currLine.size);
-            addText(currLine.txt, currLine.x, currLine.y, currLine.size,currLine.font, currLine.align, currLine.fill, currLine.stroke);
-        };
-    };
 };

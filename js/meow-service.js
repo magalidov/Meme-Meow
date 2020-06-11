@@ -22,8 +22,6 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['happy'] },
 ];
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
 var gMeme;
-
-
 function setMeme(imgId,canvasWidth, canvasHeight) {
     gMeme = {
         memeId: makeId(),
@@ -35,16 +33,28 @@ function setMeme(imgId,canvasWidth, canvasHeight) {
     };
 };
 
+// PERMISSIONS
 function getImages(){
     return gImgs;
 };
-
 function getMeme(){
     return gMeme;
 };
-function changeMemeLine(set,content){
-    gMeme.lines[0][set]= (set!=='size')? content : gMeme.lines[0][set]+content;
+
+// EDIT G-MEME
+function editMemeLine(set,content){
+    gMeme.lines[gMeme.selectedLineIdx][set]= (set!=='size')? content : gMeme.lines[0][set]+content;
 };
+function switchLine(){
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx< gMeme.lines.length-1)? gMeme.selectedLineIdx+1 : 0
+}
+function newLine(canvasWidth, canvasHeight){
+    gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: (canvasHeight/2),font: 'impact', align: 'left', fill: 'black', stroke: 'white' })
+    gMeme.selectedLineIdx = gMeme.lines.length-1
+}
+function deleteCurrLine(){
+    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+}
 
 
 

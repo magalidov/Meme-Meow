@@ -40,25 +40,25 @@
             <div class="tool-box flex-col">
 
                 <div class="txt-modifiers flex">
-                    <input oninput="onChangeCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
+                    <input oninput="onEditCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
                         placeholder="Your Joke" type="text">
-                    <button onclick="">
+                    <button onclick="onAddLine()">
                         <img src="./icons/add.png">
                     </button>
-                    <button onclick="">
+                    <button onclick="onDeleteLine()">
                         <img src="./icons/trash.png">
                     </button>
-                    <button onclick="">
+                    <button onclick="onSwitchLine()">
                         <img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png">
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <select onchange="onChangeCurrLine(this.dataset.type,this.value)" value="impact">
+                    <select onchange="onEditCurrLine(this.dataset.type,this.value)" value="impact">
                         <option>Impact</option>
                     </select>
-                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
+                    <input onchange="onEditCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
                         title="Fill Color" type="color" class="color-input">
-                    <input onchange="onChangeCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
+                    <input onchange="onEditCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
                         title="Stroke Color" type="color" class="color-input">
                     <button onclick="">
                         <img src="./icons/align-to-left.png">
@@ -71,10 +71,10 @@
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <button onclick="onChangeCurrLine(this.dataset.type,+1)" data-type="size">
+                    <button onclick="onEditCurrLine(this.dataset.type,+1)" data-type="size">
                         A+
                     </button>
-                    <button onclick="onChangeCurrLine(this.dataset.type,-1)" data-type="size">
+                    <button onclick="onEditCurrLine(this.dataset.type,-1)" data-type="size">
                         A-
                     </button>
                 </div>
