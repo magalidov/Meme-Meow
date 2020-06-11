@@ -28,8 +28,8 @@ function setMeme(imgId,canvasWidth, canvasHeight) {
         selectedImgId: imgId,
         selectedImgUrl: `img/${imgId}.jpg`,
         selectedLineIdx: 0,
-        lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: 70,font: 'impact', align: 'left', fill: 'black', stroke: 'white' },
-        { txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: canvasHeight-30,font: 'impact', align: 'left', fill: 'black', stroke: 'white' }]
+        lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth/2), y: 70,font: 'impact', align: 'center', fill: 'black', stroke: 'white',strokeWidth: 2 },
+        { txt: 'Your Joke', size: 50, x: (canvasWidth/2), y: canvasHeight-30,font: 'impact', align: 'center', fill: 'black', stroke: 'white',strokeWidth: 2 }]
     };
 };
 
@@ -40,16 +40,19 @@ function getImages(){
 function getMeme(){
     return gMeme;
 };
+function getSearchKeys(){
+    return gKeywords
+}
 
 // EDIT G-MEME
-function editMemeLine(set,content){
-    gMeme.lines[gMeme.selectedLineIdx][set]= (set!=='size')? content : gMeme.lines[0][set]+content;
+function editMemeLine(set,content,lineIdx=gMeme.selectedLineIdx){
+    gMeme.lines[lineIdx][set]= (isNaN(content))? content : gMeme.lines[lineIdx][set]+content;
 };
 function switchLine(){
     gMeme.selectedLineIdx = (gMeme.selectedLineIdx< gMeme.lines.length-1)? gMeme.selectedLineIdx+1 : 0
 }
 function newLine(canvasWidth, canvasHeight){
-    gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: (canvasHeight/2),font: 'impact', align: 'left', fill: 'black', stroke: 'white' })
+    gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth/2), y: (canvasHeight/2),font: 'impact', align: 'center', fill: 'black', stroke: 'white',strokeWidth: 2 })
     gMeme.selectedLineIdx = gMeme.lines.length-1
 }
 function deleteCurrLine(){

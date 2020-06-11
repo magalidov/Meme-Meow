@@ -1,7 +1,20 @@
 /* FONTS */
 @font-face {
+    font-family: alberta;
+    src: url(../fonts/alberta.ttf);
+}
+@font-face {
+    font-family: bazooka;
+    src: url(../fonts/bazooka.ttf);
+}
+@font-face {
+    font-family: hotdog;
+    src: url(../fonts/hotdog.ttf);
+}
+@font-face {
     font-family: impact;
     src: url(../fonts/impact.ttf);
+    
 }
 /* BASE */
 *{
@@ -28,6 +41,9 @@ a {
 button{
     font-family: inherit;
     cursor: pointer;
+}
+button:focus{
+    outline: none;
 }
 canvas{
     display: block;
@@ -108,14 +124,14 @@ canvas{
 .txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
     background-color: #fff;
     border: 1.5px black solid;
-    height: 1.437rem;
+    height: 1.5rem;
     margin: 0.250rem;
 }
 .txt-input{
-    width: 10rem;
+    width: 9.5rem;
 }
 .color-input{
-    width: 2.25rem; 
+    width: 2rem; 
 }
 .txt-modifiers select{
     width: 4.5rem; 
@@ -127,7 +143,12 @@ canvas{
 .txt-modifiers button{
     width: 2rem;
     font-size: 1rem;
+    overflow: hidden;
 }
+.save button{
+    width: 4.5rem
+}
+
 /* CANVAS */
 .aspect-ratio-holder{
     position: relative;

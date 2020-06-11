@@ -18,48 +18,60 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
     var meme = getMeme()
-    if (meme) { setMeme(meme.selectedImgId, gElCanvas.width, gElCanvas.height); renderMeme(); }
+    if (meme){
+        setMeme(meme.selectedImgId, gElCanvas.width, gElCanvas.height);
+        renderMeme();
+    }
+    // if (gOnEdit) {
+    //     for (var i = 0; i< meme.lines.length; i++){
+    //         editMemeLine('x', meme.lines[i].x-1,i)
+    //         editMemeLine('y', meme.lines[i].y-1,i)
+    //         renderMeme();
+    //     }
+    // } else if (meme){
+    //     setMeme(meme.selectedImgId, gElCanvas.width, gElCanvas.height);
+    //     renderMeme();
+    // }
 }
 window.addEventListener('resize', function (event) {
     resizeCanvas();
 });
-
-// SAVING OPTIONS
-function onSaveMeme() {
-    const data = gElCanvas.toDataURL();
-    var meme = getMeme()
-    meme.url = data
-    saveToStorage('meows', meme)
-}
-function onDownloadMeme(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'my_img';
-}
-function onFacebookShare(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = `https://www.facebook.com/sharer/sharer.php?u=http://${data}`
-}
-
-// EDIT MEME
 function onSetMeme(imgId) {
     document.querySelector('.pics-gallery').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
     setMeme(imgId, gElCanvas.width, gElCanvas.height);
     resizeCanvas()
 };
+
+// SAVING OPTIONS
+function onSaveMeme() {                       //NEEDS A FIX
+    const data = gElCanvas.toDataURL();
+    var meme = getMeme()
+    meme.url = data
+    saveToStorage('meows', meme)
+}
+function onDownloadMeme(elButton) {
+    const data = gElCanvas.toDataURL();
+    elButton.href = data;
+    elButton.download = 'my_img';
+}
+function onFacebookShare(elButton) {
+    const data = gElCanvas.toDataURL();
+    elButton.href = `https://www.facebook.com/sharer/sharer.php?u=http://${data}`
+}
+
+// EDIT MEME
 function onEditCurrLine(type, content) {
     gOnEdit = true
     editMemeLine(type, content);
     renderMeme();
 };
 function onSwitchLine() {
-    onSwitchLine()
+    switchLine()
     renderMeme()
 }
-
 // ADD REMOVE
-function onAddLine(){
+function onAddLine() {
     newLine(gElCanvas.width, gElCanvas.height)
     renderMeme()
 }
@@ -90,7 +102,7 @@ function renderMeme() {
         for (var i = 0; i < meme.lines.length; i++) {
             var currLine = meme.lines[i];
             if (meme.selectedLineIdx === i) hilightEdit(currLine.x, currLine.y, currLine.size);
-            addText(currLine.txt, currLine.x, currLine.y, currLine.size, currLine.font, currLine.align, currLine.fill, currLine.stroke);
+            addText(currLine.txt, currLine.x, currLine.y, currLine.size, currLine.font, currLine.align, currLine.fill, currLine.stroke, currLine.strokeWidth);
         };
     };
 };

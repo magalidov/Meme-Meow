@@ -27,7 +27,6 @@
             <!-- ****** Render Pictures ****** -->
         </section>
 
-
         <section class="meme-editor grid" hidden>
 
             <div class="aspect-ratio-holder">
@@ -41,7 +40,7 @@
 
                 <div class="txt-modifiers flex">
                     <input oninput="onEditCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
-                        placeholder="Your Joke" type="text">
+                        placeholder="Your Joke" type="text" autofocus>
                     <button onclick="onAddLine()">
                         <img src="./icons/add.png">
                     </button>
@@ -53,35 +52,50 @@
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <select onchange="onEditCurrLine(this.dataset.type,this.value)" value="impact">
-                        <option>Impact</option>
+                    <select onchange="onEditCurrLine(this.dataset.type,this.value)" data-type="font">
+                        <option value="alberta">Alberta</option>
+                        <option value="bazooka">Bazooka</option>
+                        <option value="hotdog">Hotdog</option>
+                        <option value="impact" selected="selected">Impact</option>
                     </select>
                     <input onchange="onEditCurrLine(this.dataset.type,this.value)" value="#000000" data-type="fill"
                         title="Fill Color" type="color" class="color-input">
                     <input onchange="onEditCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
                         title="Stroke Color" type="color" class="color-input">
-                    <button onclick="">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="right" data-type="align">
                         <img src="./icons/align-to-left.png">
                     </button>
-                    <button onclick="">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="center" data-type="align">
                         <img src="./icons/center-text-alignment.png">
                     </button>
-                    <button onclick="">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="left" data-type="align">
                         <img src="./icons/align-to-right.png">
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <button onclick="onEditCurrLine(this.dataset.type,+1)" data-type="size">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="size">
                         A+
                     </button>
-                    <button onclick="onEditCurrLine(this.dataset.type,-1)" data-type="size">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="size">
                         A-
                     </button>
+                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="strokeWidth">
+                        S+
+                    </button>
+                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="strokeWidth">
+                        S-
+                    </button>
+                    <button class="save" onclick="onSaveMeme()">
+                        <img src="./icons/save.png">
+                    </button>
+                    <button href="#" class="download" onclick="onDownloadMeme(this)" download="">
+                        <img src="./icons/download.png">
+                    </button>
+                    <button href="#" onclick="onFacebookShare(this)" target="_blank">
+                        <img src="./icons/facebook.png"></button>
                 </div>
 
-                <a href="#" class="clear" onclick="onSaveMeme()">Save</a>
-                <a href="#" class="save" onclick="onDownloadMeme(this)" download="">Download</a>
-                <a href="#" onclick="onFacebookShare(this)" target="_blank">Share</a>
+                
 
             </div>
         </section>
@@ -93,6 +107,11 @@
 
 
 
+    <div class="preload-fonts" style="color:white">
+        <span style="font-family: alberta">font</span>
+        <span style="font-family: bazooka">font</span>
+        <span style="font-family: hotdog">font</span>
+    </div>
     <script src="js/meow-storage.js"></script>
     <script src="js/meow-utils.js"></script>
     <script src="js/meow-service.js"></script>
