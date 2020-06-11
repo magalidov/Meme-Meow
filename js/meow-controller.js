@@ -126,15 +126,17 @@ function hilightEdit(x, y, size) {
 // DRAG OBJECTS
 function onPickObject(ev) {
     gDrag=true
-    if (ev.type === 'touchstart' || ev.type === 'touchend') {
+    if (ev.type === 'touchstart') {
         ev.preventDefault()
-        offsetX = ev.touches[0].clientX
-        offsetY = ev.touches[0].clientY
+        var offsetXY=recoverOffsetValues(ev)
+        offsetX = offsetXY[0]
+        offsetY = offsetXY[1]
     } else {
         var { offsetX, offsetY } = ev;
     }
     var meme = getMeme()
     var objectIdx = meme.lines.findIndex(line => {
+        console.log('line.y :', line.y )
         return ((line.y - line.size) < offsetY && offsetY < line.y)
     })
     switchLine(objectIdx)
@@ -147,8 +149,9 @@ function onDrag(ev) {
     gOnEdit = true
     if (ev.type === 'touchmove' || ev.type === 'touchstart') {
         ev.preventDefault()
-        offsetX = ev.touches[0].clientX
-        offsetY = ev.touches[0].clientY
+        var offsetXY=recoverOffsetValues(ev)
+        offsetX = offsetXY[0]
+        offsetY = offsetXY[1]
     } else {
         var { offsetX, offsetY } = ev;
     }
@@ -157,6 +160,16 @@ function onDrag(ev) {
     meme.lines[meme.selectedLineIdx].y = offsetY
     renderMeme()
 }
-function onDropObject(event){
+function onDropObject(){
     gDrag=false
+}
+function recoverOffsetValues(e) {
+    var rect = e.target.getBoundingClientRect();
+    var bodyRect = document.body.getBoundingClientRect();
+    var offsetX = e.changedTouches[0].pageX - (rect.left - bodyRect.left);
+    var offsetY = e.changedTouches[0].pageY - (rect.top - bodyRect.top);
+    return [offsetX, offsetY];
+}
+
+function onResizeObject(event){
 }

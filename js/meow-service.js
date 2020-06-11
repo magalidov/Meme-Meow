@@ -49,6 +49,7 @@ function editMemeLine(set,content,lineIdx=gMeme.selectedLineIdx){
     gMeme.lines[lineIdx][set]= (isNaN(content))? content : gMeme.lines[lineIdx][set]+content;
 };
 function switchLine(idx=false){
+    console.log('idx:', idx)
     if (idx===false){
         gMeme.selectedLineIdx = (gMeme.selectedLineIdx< gMeme.lines.length-1)? gMeme.selectedLineIdx+1 : 0
     } else {
