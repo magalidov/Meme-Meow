@@ -1,15 +1,16 @@
 'use strict'
 console.log('Controller');
 
-var gDrag=false
-var gOnEdit=false;
+var gDrag = false
+var gOnEdit = false;
 var gElCanvas;
 var gCtx;
 
 function onInit() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    renderGallry('new');
+    var imgs = getImages()
+    renderGallry(imgs);
     resizeCanvas();
 }
 function resizeCanvas() {
@@ -81,19 +82,23 @@ function onDeleteLine() {
     deleteCurrLine()
     renderMeme()
 }
-
+// SEARCH
+function onStartSearch(key) {
+    var filterdImgs = filterGallery(key)
+    renderGallry(filterdImgs)
+}
 // RENDER GALLERY
 function onShowGallery(gallery) {
     if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
-    renderGallry(gallery)
+    gOnEdit = false
     document.querySelector('.pics-gallery').style.display = 'grid';
     document.querySelector('.meme-editor').style.display = 'none';
-};
-function renderGallry(gallery) {
     var imgs = (gallery === 'new') ? getImages() : [loadFromStorage('meows')]
+    renderGallry(imgs)
+};
+function renderGallry(imgs) { 
     document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
 }
-
 // RENDER MEME EDITOR
 function renderMeme() {
     var meme = getMeme()
@@ -124,32 +129,38 @@ function hilightEdit(x, y, size) {
 };
 
 // DRAG OBJECTS
+function onMouseAboveObject(ev) {
+    if (gDrag) return
+    console.log('gDrag:', gDrag)
+    var { offsetX, offsetY } = ev;
+    var meme = getMeme()
+    var objectIdx = meme.lines.findIndex(line => ((line.y - line.size) < offsetY && offsetY < line.y))
+    if (objectIdx >= 0) document.body.style.cursor = 'grab'
+    if (objectIdx < 0) document.body.style.cursor = 'default'
+}
 function onPickObject(ev) {
-    gDrag=true
+    gDrag = true
     if (ev.type === 'touchstart') {
         ev.preventDefault()
-        var offsetXY=recoverOffsetValues(ev)
+        var offsetXY = recoverOffsetValues(ev)
         offsetX = offsetXY[0]
         offsetY = offsetXY[1]
     } else {
         var { offsetX, offsetY } = ev;
     }
     var meme = getMeme()
-    var objectIdx = meme.lines.findIndex(line => {
-        console.log('line.y :', line.y )
-        return ((line.y - line.size) < offsetY && offsetY < line.y)
-    })
+    var objectIdx = meme.lines.findIndex(line => ((line.y - line.size) < offsetY && offsetY < line.y))
     switchLine(objectIdx)
     renderMeme()
 }
 function onDrag(ev) {
     var meme = getMeme()
-    if (gDrag===false) return
-    if (meme.selectedLineIdx<0) return
+    if (gDrag === false) return
+    if (meme.selectedLineIdx < 0) return
     gOnEdit = true
     if (ev.type === 'touchmove' || ev.type === 'touchstart') {
         ev.preventDefault()
-        var offsetXY=recoverOffsetValues(ev)
+        var offsetXY = recoverOffsetValues(ev)
         offsetX = offsetXY[0]
         offsetY = offsetXY[1]
     } else {
@@ -160,16 +171,17 @@ function onDrag(ev) {
     meme.lines[meme.selectedLineIdx].y = offsetY
     renderMeme()
 }
-function onDropObject(){
-    gDrag=false
+function onDropObject() {
+    gDrag = false
+    document.body.style.cursor = 'default'
 }
-function recoverOffsetValues(e) {
-    var rect = e.target.getBoundingClientRect();
+function recoverOffsetValues(ev) {
+    var rect = ev.target.getBoundingClientRect();
     var bodyRect = document.body.getBoundingClientRect();
-    var offsetX = e.changedTouches[0].pageX - (rect.left - bodyRect.left);
-    var offsetY = e.changedTouches[0].pageY - (rect.top - bodyRect.top);
+    var offsetX = ev.changedTouches[0].pageX - (rect.left - bodyRect.left);
+    var offsetY = ev.changedTouches[0].pageY - (rect.top - bodyRect.top);
     return [offsetX, offsetY];
 }
 
-function onResizeObject(event){
+function onResizeObject(event) {
 }

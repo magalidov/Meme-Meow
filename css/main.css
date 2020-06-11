@@ -77,7 +77,10 @@ canvas{
     flex-flow: column;
     align-items: flex-start;
 }
-
+.flex-search{
+    display: flex;
+    justify-content: flex-end;
+}
 /* BODY */
 
 /* HEADER */
@@ -104,11 +107,15 @@ canvas{
 /* MAIN */
 .main-container{
 }
-
+/* SEARCH */
+.search-input{
+    width: 16rem;
+}
 /* GALLERY */
 .pics-gallery{
 }
 .pics-gallery div{
+    cursor: pointer;
     display: block;
     background-position: center center;
     background-size: cover;
@@ -121,11 +128,11 @@ canvas{
     display: none;
 }
 /* TOOLS */
-.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
+.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input, .search-input{
     background-color: #fff;
     border: 1.5px black solid;
     height: 1.5rem;
-    margin: 0.250rem;
+    margin: 0 0.5rem 0.250rem 0;
 }
 .txt-input{
     width: 9.5rem;

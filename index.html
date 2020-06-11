@@ -21,6 +21,10 @@
         </nav>
     </header>
 
+    <section class="serach-box container flex-search">
+        <input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
+    </section>
+
     <section class="main-container container">
 
         <section class="pics-gallery grid">
@@ -31,7 +35,9 @@
 
             <div class="aspect-ratio-holder">
                 <div class="canvas-container">
-                    <canvas onmousedown="onPickObject(event)" onmousemove="onDrag(event)" onmouseup="onDropObject()" onmousewheel="onResizeObject(event)" ontouchstart="onPickObject(event)" ontouchend="onDropObject()" ontouchmove="onDrag(event)" id="my-canvas"></canvas>
+                    <canvas onmousedown="onPickObject(event)" onmousemove="onDrag(event); onMouseAboveObject(event)" onmouseup="onDropObject()"
+                        onmousewheel="onResizeObject(event)" ontouchstart="onPickObject(event)"
+                        ontouchend="onDropObject()" ontouchmove="onDrag(event)" id="my-canvas"></canvas>
                 </div>
             </div>
 
@@ -40,14 +46,14 @@
                 <div class="txt-modifiers flex">
                     <input oninput="onEditCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
                         placeholder="Your Joke" type="text" autofocus>
+                    <button onclick="onSwitchLine()">
+                        <img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png">
+                    </button>
                     <button onclick="onAddLine()">
                         <img src="./icons/add.png">
                     </button>
                     <button onclick="onDeleteLine()">
                         <img src="./icons/trash.png">
-                    </button>
-                    <button onclick="onSwitchLine()">
-                        <img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png">
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
@@ -96,7 +102,7 @@
                         <img src="./icons/facebook.png"></button>
                 </div>
 
-                
+
 
             </div>
         </section>
