@@ -12,6 +12,8 @@ function onInit() {
     var imgs = getImages()
     renderGallry(imgs);
     resizeCanvas();
+    setKeywords()
+    renderSearchBox()
 }
 function resizeCanvas() {
     if (gOnEdit) return
@@ -87,6 +89,25 @@ function onStartSearch(key) {
     var filterdImgs = filterGallery(key)
     renderGallry(filterdImgs)
 }
+// RENDER SEARCH BOX
+function onShowSearchBox(){
+    document.querySelector('.serach-box').style.display='flex'
+}
+function renderSearchBox(){  // IN PROGRESS
+    // var keys = getSearchKeys()
+    // var keysHTML=''
+    // for (var key in keys){
+    //     if (keys[key]>1){
+    //         keysHTML+= `<span class="key-word">${key}</span>`
+    //     }
+    // }
+    // console.log('keysHTML:', keysHTML)
+    // var strHTML = `<input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
+    // <br>
+    // ${keysHTML}`
+    // document.querySelector('.serach-box').innerHTML = strHTML
+}
+
 // RENDER GALLERY
 function onShowGallery(gallery) {
     if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
