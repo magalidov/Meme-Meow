@@ -87,6 +87,7 @@ function onDeleteLine() {
 }
 // SEARCH
 function onStartSearch(key,input='') {
+    key = key.toLowerCase()
     onShowGallery()
     var filterdImgs = filterGallery(key)
     renderGallry(filterdImgs)
