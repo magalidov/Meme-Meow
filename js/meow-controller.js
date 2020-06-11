@@ -68,8 +68,8 @@ function renderGallry(gallery) {
 }
 
 // RENDER MEME EDITOR
-function addText(text, x, y, size, align, fill, stroke, strokeWidth) {
-    gCtx.font = `${size}px impact`;
+function addText(text, x, y, size,font, align, fill, stroke, strokeWidth) {
+    gCtx.font = `${size}px ${font}`;
     gCtx.textAlign = `${align}`;
     gCtx.fillStyle = `${fill}`;
     gCtx.strokeStyle = `${stroke}`;
@@ -85,13 +85,13 @@ function hilightEdit(x, y, size) {
 function renderMeme() {
     var meme = getMeme()
     var elImg = new Image();
-    elImg.src = `./img/${meme.selectedImgId}.jpg`;
+    elImg.src = `./${meme.selectedImgUrl}`;
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
         for (var i = 0; i < meme.lines.length; i++) {
             var currLine = meme.lines[i];
             if (meme.selectedLineIdx===i) hilightEdit(currLine.x, currLine.y, currLine.size);
-            addText(currLine.txt, currLine.x, currLine.y, currLine.size, currLine.align, currLine.fill, currLine.stroke);
+            addText(currLine.txt, currLine.x, currLine.y, currLine.size,currLine.font, currLine.align, currLine.fill, currLine.stroke);
         };
     };
 };

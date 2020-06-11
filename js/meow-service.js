@@ -26,11 +26,12 @@ var gMeme;
 
 function setMeme(imgId,canvasWidth, canvasHeight) {
     gMeme = {
+        memeId: makeId(),
         selectedImgId: imgId,
-        // selectedLineIdx: { x: 100 , y: 70 },
+        selectedImgUrl: `img/${imgId}.jpg`,
         selectedLineIdx: 0,
-        lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: 70, align: 'left', fill: 'black', stroke: 'white' },
-        { txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: canvasHeight-30, align: 'left', fill: 'black', stroke: 'white' }]
+        lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: 70,font: 'impact', align: 'left', fill: 'black', stroke: 'white' },
+        { txt: 'Your Joke', size: 50, x: (canvasWidth/2)-((canvasWidth/2)/2), y: canvasHeight-30,font: 'impact', align: 'left', fill: 'black', stroke: 'white' }]
     };
 };
 
