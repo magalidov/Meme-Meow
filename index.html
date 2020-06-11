@@ -31,7 +31,7 @@
 
             <div class="aspect-ratio-holder">
                 <div class="canvas-container">
-                    <canvas onmousedown="" onmousemove="" onmouseup="" ontouchstart="" ontouchend="" ontouchmove=""
+                    <canvas onmousedown="onPickObject(event)" onmousemove="" onmouseup="" ontouchstart="" ontouchend="" ontouchmove=""
                         id="my-canvas"></canvas>
                 </div>
             </div>
@@ -88,9 +88,11 @@
                     <button class="save" onclick="onSaveMeme()">
                         <img src="./icons/save.png">
                     </button>
-                    <button href="#" class="download" onclick="onDownloadMeme(this)" download="">
-                        <img src="./icons/download.png">
-                    </button>
+                    <a href="#" class="download" onclick="onDownloadMeme(this)" download="">
+                        <button>
+                            <img src="./icons/download.png">
+                        </button>
+                    </a>
                     <button href="#" onclick="onFacebookShare(this)" target="_blank">
                         <img src="./icons/facebook.png"></button>
                 </div>

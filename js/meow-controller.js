@@ -18,7 +18,7 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
     var meme = getMeme()
-    if (meme){
+    if (meme) {
         setMeme(meme.selectedImgId, gElCanvas.width, gElCanvas.height);
         renderMeme();
     }
@@ -120,3 +120,30 @@ function hilightEdit(x, y, size) {
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     gCtx.fillRect(0, y - size, gElCanvas.width, size + 20);
 };
+
+// DRAG OBJECTS
+
+function onPickObject(ev) {
+    if (ev.type === 'touchstart' || ev.type === 'touchend') {
+        ev.preventDefault()
+        offsetX = ev.touches[0].clientX
+        offsetY = ev.touches[0].clientY
+    } else {
+        var { offsetX, offsetY } = ev;
+    }
+    var meme = getMeme()
+    var objectIdx = meme.lines.findIndex(line => {
+        return ((line.y - line.size) < offsetY && offsetY < line.y)
+    })
+    switchLine(objectIdx)
+    renderMeme()
+}
+function onDrag(ev) {
+    if (ev.type === 'touchmove' || ev.type === 'touchstart') {
+        ev.preventDefault()
+        offsetX = ev.touches[0].clientX
+        offsetY = ev.touches[0].clientY
+    } else {
+        var { offsetX, offsetY } = ev;
+    }
+}

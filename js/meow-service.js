@@ -48,8 +48,12 @@ function getSearchKeys(){
 function editMemeLine(set,content,lineIdx=gMeme.selectedLineIdx){
     gMeme.lines[lineIdx][set]= (isNaN(content))? content : gMeme.lines[lineIdx][set]+content;
 };
-function switchLine(){
-    gMeme.selectedLineIdx = (gMeme.selectedLineIdx< gMeme.lines.length-1)? gMeme.selectedLineIdx+1 : 0
+function switchLine(idx=false){
+    if (idx===false){
+        gMeme.selectedLineIdx = (gMeme.selectedLineIdx< gMeme.lines.length-1)? gMeme.selectedLineIdx+1 : 0
+    } else {
+        gMeme.selectedLineIdx = idx
+    }
 }
 function newLine(canvasWidth, canvasHeight){
     gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth/2), y: (canvasHeight/2),font: 'impact', align: 'center', fill: 'black', stroke: 'white',strokeWidth: 2 })
