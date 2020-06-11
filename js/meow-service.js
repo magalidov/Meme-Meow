@@ -39,6 +39,7 @@ function filterGallery(key) {
     var filterdImgs = gImgs.filter(img => img.keywords.find(word => word.includes(key)))
     return filterdImgs
 }
+// SEARCH
 function setKeywords() {
     gKeywords = gImgs.reduce((acc, img) => {
         img.keywords.forEach(word => {
@@ -47,6 +48,12 @@ function setKeywords() {
         })
         return acc
     }, {})
+}
+function updateKeywords(key){
+    if (gKeywords[key]) {
+        gKeywords[key]++
+        return true
+    }
 }
 
 // PERMISSIONS

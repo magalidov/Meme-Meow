@@ -40,6 +40,7 @@ window.addEventListener('resize', function (event) {
     resizeCanvas();
 });
 function onSetMeme(imgId) {
+    document.querySelector('.search-box').style.display ='none'
     document.querySelector('.pics-gallery').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
     setMeme(imgId, gElCanvas.width, gElCanvas.height);
@@ -85,30 +86,34 @@ function onDeleteLine() {
     renderMeme()
 }
 // SEARCH
-function onStartSearch(key) {
+function onStartSearch(key,input='') {
+    onShowGallery()
     var filterdImgs = filterGallery(key)
     renderGallry(filterdImgs)
+    if (updateKeywords(key)) renderSearchBox(key,input)
 }
 // RENDER SEARCH BOX
-function onShowSearchBox(){
-    document.querySelector('.serach-box').style.display='flex'
+function onToggleSearchBox() {
+    var elBoxStyle = document.querySelector('.search-box').style
+    elBoxStyle.display = (!elBoxStyle.display||elBoxStyle.display==='none') ?'flex' : 'none'
 }
-function renderSearchBox(){  
+function renderSearchBox(savedInput='',input) {
+    savedInput = (input!=='keypress')? savedInput : ''
     var keys = getSearchKeys()
-    var keysHTML=''
-    for (var key in keys){
-        if (keys[key]>3){
-            keysHTML+= `<a onclick="onStartSearch('${key}')" style="color:rgba(1${10-keys[key]}0, 1${10-keys[key]}0, 1${10-keys[key]}0); font-size:${keys[key]*0.20}rem" class="key-word">${key}</a>`
+    var keysHTML = ''
+    for (var key in keys) {
+        if (keys[key] > 3) {
+            keysHTML += `<a onclick="onStartSearch('${key}','keypress')" style="color:rgba(1${10 - keys[key]}0, 1${10 - keys[key]}0, 1${10 - keys[key]}0); font-size:${keys[key] * 0.20}rem" class="key-word">${key}</a>`
         }
     }
-    console.log('keysHTML:', keysHTML)
-    var strHTML = `<input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
+    var strHTML = `
+    <input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" value="${savedInput}" autofocus>
     ${keysHTML}`
     document.querySelector('.search-box').innerHTML = strHTML
 }
 
 // RENDER GALLERY
-function onShowGallery(gallery) {
+function onShowGallery(gallery='new') {
     if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return }
     gOnEdit = false
     document.querySelector('.pics-gallery').style.display = 'grid';
@@ -116,7 +121,7 @@ function onShowGallery(gallery) {
     var imgs = (gallery === 'new') ? getImages() : [loadFromStorage('meows')]
     renderGallry(imgs)
 };
-function renderGallry(imgs) { 
+function renderGallry(imgs) {
     document.querySelector('.pics-gallery').innerHTML = imgs.map(img => `<div style="background-image: url(${img.url})" onclick="onSetMeme(this.dataset.id)" data-id="${img.id}"></div>`).join('\n')
 }
 // RENDER MEME EDITOR
@@ -151,7 +156,6 @@ function hilightEdit(x, y, size) {
 // DRAG OBJECTS
 function onMouseAboveObject(ev) {
     if (gDrag) return
-    console.log('gDrag:', gDrag)
     var { offsetX, offsetY } = ev;
     var meme = getMeme()
     var objectIdx = meme.lines.findIndex(line => ((line.y - line.size) < offsetY && offsetY < line.y))
@@ -170,6 +174,7 @@ function onPickObject(ev) {
     }
     var meme = getMeme()
     var objectIdx = meme.lines.findIndex(line => ((line.y - line.size) < offsetY && offsetY < line.y))
+    document.querySelector('.txt-input').value=`${meme.lines[objectIdx].txt}`;
     switchLine(objectIdx)
     renderMeme()
 }

@@ -14,21 +14,21 @@
         <h1 class="logo">Meme Meow</h1>
 
         <nav class="main-nav flex">
-            <img src="./icons/search-icon.png">
+            <img onclick="onToggleSearchBox()" src="./icons/search-icon.png" title="search">
             <button onclick="onShowGallery('new')" class="nav-btn">New</button>
+            <button onclick="onShowGallery('saved')" class="nav-btn">Saved</button>
             <button class="nav-btn">About</button>
-            <button onclick="onShowGallery('saved')" class="nav-btn">Memes</button>
         </nav>
     </header>
 
     <section class="search-box container flex-reverse">
-        <input oninput="onStartSearch(this.value)" class="search-input" data-type="txt" placeholder="Search" type="text" autofocus>
+        <!-- ****** Renders Search Keys ****** -->
     </section>
 
     <section class="main-container container">
 
         <section class="pics-gallery grid">
-            <!-- ****** Render Pictures ****** -->
+            <!-- ****** Renders Pictures ****** -->
         </section>
 
         <section class="meme-editor grid" hidden>
@@ -102,17 +102,18 @@
                         <img src="./icons/facebook.png"></button>
                 </div>
 
-
-
             </div>
+
+
         </section>
+
+
     </section>
 
 
     <footer class="main-footer">
     </footer>
-
-
+    
 
     <div class="preload-fonts" style="color:white">
         <span style="font-family: alberta">font</span>

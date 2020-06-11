@@ -12,8 +12,8 @@
     src: url(../fonts/hotdog.ttf);
 }
 @font-face {
-    font-family: lato;
-    src: url(../fonts/lato.ttf);
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
     
 }
 @font-face {
@@ -106,6 +106,7 @@ canvas{
 .main-nav img{
     width: 1.5rem;
     margin: 0.312rem;
+    cursor: pointer;
 }
 .nav-btn{
     outline: none;
@@ -119,6 +120,7 @@ canvas{
 }
 /* SEARCH */
 .search-box{
+    display: none;
     flex-wrap: wrap;
     margin-bottom: 10px ;
 }
@@ -127,11 +129,11 @@ canvas{
     display:inline-block;
     margin-left: 0.8rem;
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: ubuntu;
 }
 .search-input{
     align-self: flex-start;
-    width: 16rem;
+    width: 19rem;
     margin: 0.8rem 0 0.8rem 0.8rem;
     background-color: #fff;
     border: 1.5px black solid;
@@ -159,6 +161,7 @@ canvas{
     border: 1.5px black solid;
     height: 1.5rem;
     margin: 0 0.5rem 0.250rem 0;
+    outline: none;
 }
 .txt-input{
     width: 9.5rem;
@@ -168,7 +171,7 @@ canvas{
 }
 .txt-modifiers select{
     width: 4.5rem; 
-    outline: none;
+    
 }
 .txt-modifiers img{
     height: 100%;
