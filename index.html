@@ -22,22 +22,23 @@
     </header>
 
     <section class="search-box container flex-reverse">
-        <!-- ****** Renders Search Keys ****** -->
+        <!-- ****** Search Keys Renders Here ****** -->
     </section>
 
     <section class="main-container container">
 
         <section class="pics-gallery grid">
-            <!-- ****** Renders Pictures ****** -->
+            <!-- ****** Pictures Renders Here ****** -->
         </section>
 
         <section class="meme-editor grid" hidden>
 
             <div class="aspect-ratio-holder">
                 <div class="canvas-container">
-                    <canvas onmousedown="onPickObject(event)" onmousemove="onDrag(event); onMouseAboveObject(event)" onmouseup="onDropObject()"
-                        onmousewheel="onResizeObject(event)" ontouchstart="onPickObject(event)"
-                        ontouchend="onDropObject()" ontouchmove="onDrag(event)" id="my-canvas"></canvas>
+                    <canvas onmousedown="onPickObject(event)" onmousemove="onDrag(event); onMouseAboveObject(event)"
+                        onmouseup="onDropObject()" onmousewheel="onResizeObject(event)"
+                        ontouchstart="onPickObject(event)" ontouchend="onDropObject()" ontouchmove="onDrag(event)"
+                        id="my-canvas"></canvas>
                 </div>
             </div>
 
@@ -98,8 +99,18 @@
                             <img src="./icons/download.png">
                         </button>
                     </a>
-                    <button href="#" onclick="onFacebookShare(this)" target="_blank">
-                        <img src="./icons/facebook.png"></button>
+                    <div class="facebook-publish">
+                        <form action="" method="POST" enctype="multipart/form-data"
+                            onsubmit="onFacebookShare(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit"><img src="./icons/facebook.png"></button>
+                            <div class="share-container"></div>
+                        </form>
+
+                    </div>
+
+
+
                 </div>
 
             </div>
@@ -113,13 +124,14 @@
 
     <footer class="main-footer">
     </footer>
-    
+
 
     <div class="preload-fonts" style="color:white">
         <span style="font-family: alberta">font</span>
         <span style="font-family: bazooka">font</span>
         <span style="font-family: hotdog">font</span>
     </div>
+    <script src="js/meow-upload-services.js"></script>
     <script src="js/meow-storage.js"></script>
     <script src="js/meow-utils.js"></script>
     <script src="js/meow-service.js"></script>

@@ -188,8 +188,8 @@ canvas{
 /* CANVAS */
 .aspect-ratio-holder{
     position: relative;
-    width: 100%;
-    padding-top: 90%;
+    width: 93%;
+    padding-top: 93%;
 }
 .canvas-container{
     max-height: 100%;
