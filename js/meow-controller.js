@@ -15,7 +15,6 @@ function onInit() {
     loadSavedMemsData();
 }
 function resizeCanvas() {
-    // if (gOnEdit) return
     var elContainer = document.querySelector('.canvas-container');
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
