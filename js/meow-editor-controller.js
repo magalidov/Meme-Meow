@@ -178,6 +178,10 @@ function recoverOffsetValues(ev) {
     return [offsetX, offsetY];
 }
 
-// ON PROGRESS
 function onResizeObject(event) {
+    var meme = getMeme();
+    if (meme.selectedLineIdx<0) return
+    if (event.deltaY<0)meme.lines[meme.selectedLineIdx].size-- 
+    else if (event.deltaY>0) meme.lines[meme.selectedLineIdx].size++ 
+    renderMeme();
 }
