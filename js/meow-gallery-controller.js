@@ -1,6 +1,7 @@
 'use strict'
 console.log('Gallery-Controller');
 var gDisplayGallery = 'new'
+
 // ON SEARCH TYPE
 function onStartSearch(key, inputType = '') {
     key = key.toLowerCase();
@@ -29,11 +30,13 @@ function renderSearchBox(savedKey = '', inputType = '') {
     ${keysHTML}`;
     document.querySelector('.search-box').innerHTML = strHTML;
 }
+
 // Modal
 function onShowGallery(gallery) {
-    gDisplayGallery = gallery
-    if (!gOnEdit) showGallery()
-    else openModal()
+    gDisplayGallery = gallery;
+    if (!gOnEdit) showGallery();
+    else openModal(); removeEditingHighlit();
+    
 };
 function openModal(){
     document.querySelector('.unsaved-warning-modal').style.display='block';
@@ -46,6 +49,7 @@ function onContinueToGallery(save=false){
     onCloseModal()
     showGallery()
 }
+
 // RENDER GALLERY
 function showGallery(){
     gOnEdit = false;
@@ -54,7 +58,6 @@ function showGallery(){
     var imgs = (gDisplayGallery === 'new') ? getImages() : getSavedMemes();
     renderGallry(imgs)
 }
-
 function renderGallry(items = getImages()) {
     if (!items) return;
     // var deleteButton = (items[0].type)? `<button class="delete-saved-btn" onclick="onDeleteSavedMeme()"></button>`

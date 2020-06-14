@@ -15,6 +15,16 @@ function onInit() {
     setKeywords();
     loadSavedMemsData();
 }
+
+function onSetMeme(id, type) {
+    AddEventListeners();
+    document.querySelector('.search-box').style.display = 'none';
+    document.querySelector('.pics-gallery').style.display = 'none';
+    document.querySelector('.meme-editor').style.display = 'grid';
+    setMeme(id, type, gElCanvas.width, gElCanvas.height);
+    resizeCanvas();
+    matchToolsDisplayWithCurrLine()
+};
 function AddEventListeners() {
     window.addEventListener('resize', () => {
         resizeCanvas();
@@ -32,15 +42,6 @@ function resizeCanvas() {
     calibrateMeme(gElCanvas.width, gElCanvas.height);
     renderMeme()
 }
-function onSetMeme(id, type) {
-    AddEventListeners();
-    document.querySelector('.search-box').style.display = 'none';
-    document.querySelector('.pics-gallery').style.display = 'none';
-    document.querySelector('.meme-editor').style.display = 'grid';
-    setMeme(id, type, gElCanvas.width, gElCanvas.height);
-    resizeCanvas();
-    matchToolsDisplayWithCurrLine()
-};
 
 // EDIT MEME
 function onEditCurrLine(type, content) {

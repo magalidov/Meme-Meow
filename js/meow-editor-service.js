@@ -4,7 +4,7 @@ console.log('Service');
 var gMeme;
 
 // SET MEME DATA
-function setMeme(id,type, canvasWidth, canvasHeight) {
+function setMeme(id,type) {
     if (type==='item'){
         gMeme = {
             id: makeId(),
@@ -12,10 +12,8 @@ function setMeme(id,type, canvasWidth, canvasHeight) {
             selectedImgId: +id,
             selectedImgUrl: `img/${id}.jpg`,
             selectedLineIdx: 0,
-            lines: [{ txt: '', size: 50, x: 250, y: 70, canvasWidth:500,canvasHeight:500,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
-            { txt: '', size: 50, x: 250, y: 470, canvasWidth:500,canvasHeight:500, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
-            // lines: [{ txt: '', size: 50, x: (canvasWidth / 2), y: 70,canvasWidth:500,canvasHeight:500,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
-            // { txt: '', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30,canvasWidth:500,canvasHeight:500, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
+            lines: [{ txt: '', size: 50, x: 250, y: 70, canvasWidth:500, canvasHeight:500,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
+            { txt: '', size: 50, x: 250, y: 470, canvasWidth:500, canvasHeight:500, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
         };
     } else if (type==='meme'){
         gMeme = gSavedMemes.find(meme => meme.id === id).memeSet;
