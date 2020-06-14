@@ -14,9 +14,9 @@
         <h1 class="logo">Meme Meow</h1>
 
         <nav class="main-nav flex">
-            <img onclick="onToggleSearchBox()" src="./icons/search-icon.png" title="search">
-            <button onclick="onShowGallery('new')" class="nav-btn">New</button>
-            <button onclick="onShowGallery('saved')" class="nav-btn">Saved</button>
+            <img onclick="onToggleSearchBox()" src="./icons/search-icon.png" title="Search">
+            <button onclick="onShowGallery('new')" class="nav-btn" title="Gallery">New</button>
+            <button onclick="onShowGallery('saved')" class="nav-btn" title="Your Creations">Saved</button>
             <button class="nav-btn">About</button>
         </nav>
     </header>
@@ -27,9 +27,9 @@
 
     <div class="unsaved-warning-modal">
         <p>Unsaved Work Will Be Lost</p>
-        <button onclick="onContinueToGallery()">OK</button>
-        <button onclick="onContinueToGallery(true)">SAVE</button>
-        <button onclick="onCloseModal()">CANCEL</button>
+        <button onclick="onCloseModal()">STAY</button>
+        <button onclick="onContinueToGallery()">PROCEED</button>
+        <button onclick="onContinueToGallery(true)" title="Save To Your Gallery">SAVE MEME</button>
     </div>
     <section class="main-container container">
         
@@ -53,18 +53,18 @@
                 <div class="txt-modifiers flex">
                     <input oninput="onEditCurrLine(this.dataset.type,this.value)" class="txt-input" data-type="txt"
                         placeholder="Your Joke" type="text" autofocus>
-                    <button onclick="onSwitchLine()">
+                    <button onclick="onSwitchLine()" title="Switch Between Lines">
                         <img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png">
                     </button>
-                    <button onclick="onAddLine()">
+                    <button onclick="onAddLine()" title="Add a New Line">
                         <img src="./icons/add.png">
                     </button>
-                    <button onclick="onDeleteLine()">
+                    <button onclick="onDeleteLine()" title="Delete This Line">
                         <img src="./icons/trash.png">
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <select class="font-choice" onchange="onEditCurrLine(this.dataset.type,this.value)" data-type="font">
+                    <select class="font-choice" title="Font" onchange="onEditCurrLine(this.dataset.type,this.value)" data-type="font">
                         <option value="alberta">Alberta</option>
                         <option value="bazooka">Bazooka</option>
                         <option value="hotdog">Hotdog</option>
@@ -74,33 +74,33 @@
                         title="Fill Color" type="color" class="color-input fill-choice">
                     <input onchange="onEditCurrLine(this.dataset.type,this.value)" value="#ffffff" data-type="stroke"
                         title="Stroke Color" type="color" class="color-input stroke-choice">
-                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="right" data-type="align">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="right" data-type="align" title="Align Left">
                         <img src="./icons/align-to-left.png">
                     </button>
-                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="center" data-type="align">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="center" data-type="align" title="Align Center">
                         <img src="./icons/center-text-alignment.png">
                     </button>
-                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="left" data-type="align">
+                    <button onclick="onEditCurrLine(this.dataset.type,this.value)" value="left" data-type="align" title="Align Right">
                         <img src="./icons/align-to-right.png">
                     </button>
                 </div>
                 <div class="txt-modifiers flex">
-                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="size">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="size" title="Increase Text Size">
                         A+
                     </button>
-                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="size">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="size" title="Decrease Stroke Size">
                         A-
                     </button>
-                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="strokeWidth">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,+1)" data-type="strokeWidth" title="Increase Text Size">
                         S+
                     </button>
-                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="strokeWidth">
+                    <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="strokeWidth" title="Decrease Stroke Size">
                         S-
                     </button>
-                    <button onclick="onSaveMeme()" class="sharing-opt">
+                    <button onclick="onSaveMeme()" class="sharing-opt" title="Save To Your Gallery">
                         <img src="./icons/save.png">
                     </button>
-                    <a href="#" class="sharing-opt" onclick="onDownloadMeme(this)" download="">
+                    <a href="#" class="sharing-opt" onclick="onDownloadMeme(this)" download="" title="Download">
                         <button>
                             <img src="./icons/download.png">
                         </button>
@@ -109,7 +109,7 @@
                         <form action="" method="POST" enctype="multipart/form-data"
                             onsubmit="onFacebookShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />
-                            <button class="btn" type="submit"><img src="./icons/facebook.png"></button>
+                            <button class="btn" type="submit" title="Share on Facebook"><img src="./icons/facebook.png"></button>
                             <div class="share-container"></div>
                         </form>
 

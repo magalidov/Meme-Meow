@@ -103,4 +103,7 @@ outline: none;
 .main-header.flex{
     align-items: flex-start;
 }
+.search-box{
+    margin-right: 1rem;
+}
 }
