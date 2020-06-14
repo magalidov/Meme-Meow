@@ -21,7 +21,7 @@ var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['arrogant', 'idea', 'mock', '
 { id: 17, url: 'img/17.jpg', keywords: ['arrogant', 'two', 'fingers', 'mock', 'politics', 'putin', 'joke', 'bad', 'russia', 'red', 'black', 'men', 'suit'],type:'item' },
 { id: 18, url: 'img/18.jpg', keywords: ['movies', 'fantasy', 'toys', 'future', 'bazz', 'udi', 'sad', 'explain', 'suit', 'happened', 'bright', 'men', 'smile', 'friends'],type:'item' }
 ];
-var gSavedMemes;
+var gSavedMemes=[];
 var gKeywords;
 var gMeme;
 
@@ -109,11 +109,12 @@ function createSavedMemesData(dataUrl) {
     var currKeys = gImgs.find(img => img.id === gMeme.selectedImgId).keywords
     var memeToSave = { id: gMeme.id , url: dataUrl, memeSet: gMeme, dateCreated: new Date() ,type:'meme', keywords: currKeys}
     var savedMemes = []
-    if (!meows) {
+    if (!meows.length) {
         savedMemes[0]= memeToSave
         saveToStorage('meows',savedMemes)
     } else {
         savedMemes = meows
+        console.log('savedMemes:', savedMemes)
         savedMemes.push(memeToSave)
         saveToStorage('meows',savedMemes)
     }
