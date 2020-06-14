@@ -85,7 +85,6 @@ function onFacebookShare(elForm, ev) {
 // RENDER MEME EDITOR
 function renderMeme() {
     var meme = getMeme();
-    console.log('meme:', meme)
     if (!meme) return;
     var elImg = new Image();
     elImg.src = `./${meme.selectedImgUrl}`;
