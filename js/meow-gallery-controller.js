@@ -35,23 +35,26 @@ function renderSearchBox(savedKey = '', inputType = '') {
 function onShowGallery(gallery) {
     gDisplayGallery = gallery;
     if (!gOnEdit) showGallery();
-    else openModal(); removeEditingHighlit();
-    
+    else {
+        openModal();
+        removeEditingHighlit();
+    }
+
 };
-function openModal(){
-    document.querySelector('.unsaved-warning-modal').style.display='block';
+function openModal() {
+    document.querySelector('.unsaved-warning-modal').style.display = 'block';
 }
-function onCloseModal(){
-    document.querySelector('.unsaved-warning-modal').style.display='none'
+function onCloseModal() {
+    document.querySelector('.unsaved-warning-modal').style.display = 'none'
 }
-function onContinueToGallery(save=false){
+function onContinueToGallery(save = false) {
     if (save) onSaveMeme()
     onCloseModal()
     showGallery()
 }
 
 // RENDER GALLERY
-function showGallery(){
+function showGallery() {
     gOnEdit = false;
     document.querySelector('.pics-gallery').style.display = 'grid';
     document.querySelector('.meme-editor').style.display = 'none';
