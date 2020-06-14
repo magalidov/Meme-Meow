@@ -13,7 +13,6 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d');
     renderGallry();
     setKeywords();
-    // resizeCanvas();
     loadSavedMemsData();
 }
 function AddEventListeners() {
