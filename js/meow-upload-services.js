@@ -2,8 +2,8 @@ function uploadImg(elForm, ev, elCanvas) {
     ev.preventDefault();
     document.getElementById('imgData').value = elCanvas.toDataURL("image/jpeg");
     function onSuccess(uploadedImgUrl) {
-        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`)
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`);
     }
     doUploadImg(elForm, onSuccess);
 }
@@ -14,10 +14,10 @@ function doUploadImg(elForm, onSuccess) {
         body: formData
     })
     .then(function (res) {
-        return res.text()
+        return res.text();
     })
     .then(onSuccess)
     .catch(function (err) {
-        console.error(err)
+        console.error(err);
     })
 }

@@ -1,0 +1,56 @@
+/* FONTS */
+@font-face {
+    font-family: alberta;
+    src: url(../fonts/alberta.ttf);
+}
+@font-face {
+    font-family: bazooka;
+    src: url(../fonts/bazooka.ttf);
+}
+@font-face {
+    font-family: hotdog;
+    src: url(../fonts/hotdog.ttf);
+}
+@font-face {
+    font-family: ubuntu;
+    src: url(../fonts/ubuntu.ttf);
+    
+}
+@font-face {
+    font-family: impact;
+    src: url(../fonts/impact.ttf);
+    
+}
+/* BASE */
+*{
+    box-sizing: border-box;
+}
+html{
+    font-family: impact ,sans-serif;
+}
+body{
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1;
+    font-weight: normal;
+}
+h1{
+    font-size: 4rem;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button{
+    font-family: inherit;
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+canvas{
+    display: block;
+}

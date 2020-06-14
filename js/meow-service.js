@@ -38,7 +38,7 @@ function setMeme(id,type, canvasWidth, canvasHeight) {
             { txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30, font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 }]
         };
     } else if (type==='meme'){
-        gMeme = gSavedMemes.find(meme => meme.id === id).memeSet
+        gMeme = gSavedMemes.find(meme => meme.id === id).memeSet;
     } 
 };
 // function calibrateMeme(currWidth, currHeight){
@@ -57,72 +57,74 @@ function editMemeLine(set, content, lineIdx = gMeme.selectedLineIdx) {
     gMeme.lines[lineIdx][set] = (isNaN(content)) ? content : gMeme.lines[lineIdx][set] + content;
 };
 function switchLine(idx = false) {
-    if (idx === false) gMeme.selectedLineIdx = (gMeme.selectedLineIdx < gMeme.lines.length - 1) ? gMeme.selectedLineIdx + 1 : 0
-    else gMeme.selectedLineIdx = idx
+    if (idx === false) gMeme.selectedLineIdx = (gMeme.selectedLineIdx < gMeme.lines.length - 1) ? gMeme.selectedLineIdx + 1 : 0;
+    else gMeme.selectedLineIdx = idx;
 }
 function newLine(canvasWidth, canvasHeight) {
-    gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: (canvasHeight / 2), font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 })
-    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    gMeme.lines.push({ txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: (canvasHeight / 2), font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 });
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 function deleteCurrLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
 
 // PERMISSIONS FROM SERVICE
 function getImages() {
     return gImgs;
 };
+function getSavedMemes(){
+    return gSavedMemes;
+};
 function getMeme() {
     return gMeme;
 };
 function getSearchKeys() {
-    return gKeywords
-}
+    return gKeywords;
+};
 
 
 // GALLERY
 function filterGallery(key) {
-    var filterdImgs = gImgs.filter(img => img.keywords.find(word => word.includes(key)))
-    return filterdImgs
+    var filterdImgs = gImgs.filter(img => img.keywords.find(word => word.includes(key)));
+    return filterdImgs;
 }
 // SEARCH
 function setKeywords() {
     gKeywords = gImgs.reduce((acc, img) => {
         img.keywords.forEach(word => {
-            if (!acc[word]) acc[word] = 1
-            else acc[word]++
+            if (!acc[word]) acc[word] = 1;
+            else acc[word]++;
         })
-        return acc
+        return acc;
     }, {})
 }
 function updateKeywords(key) {
     if (gKeywords[key]) {
-        gKeywords[key]++
-        return true
+        gKeywords[key]++;
+        return true;
     }
 }
 
 // SAVING DATA
 function createSavedMemesData(dataUrl) {
-    gMeme.type = 'meme'
-    var meows = loadFromStorage('meows')
-    var currKeys = gImgs.find(img => img.id === gMeme.selectedImgId).keywords
-    var memeToSave = { id: gMeme.id , url: dataUrl, memeSet: gMeme, dateCreated: new Date() ,type:'meme', keywords: currKeys}
-    var savedMemes = []
+    gMeme.type = 'meme';
+    var meows = loadFromStorage('meows');
+    var currKeys = gImgs.find(img => img.id === gMeme.selectedImgId).keywords;
+    var memeToSave = { id: gMeme.id , url: dataUrl, memeSet: gMeme, dateCreated: new Date() ,type:'meme', keywords: currKeys};
+    var savedMemes = [];
     if (!meows) {
-        savedMemes[0]= memeToSave
-        saveToStorage('meows',savedMemes)
+        savedMemes[0]= memeToSave;
+        saveToStorage('meows',savedMemes);
     } else {
-        savedMemes = meows
-        console.log('savedMemes:', savedMemes)
-        savedMemes.push(memeToSave)
-        saveToStorage('meows',savedMemes)
+        savedMemes = meows;
+        savedMemes.push(memeToSave);
+        saveToStorage('meows',savedMemes);
     }
-    loadSavedMemsData()
+    loadSavedMemsData();
 }
 function loadSavedMemsData(){
-    var meows = loadFromStorage('meows')
-    gSavedMemes = (meows) ? meows : null
+    var meows = loadFromStorage('meows');
+    gSavedMemes = (meows) ? meows : null;
 }
 
 

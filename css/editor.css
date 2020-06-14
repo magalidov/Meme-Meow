@@ -1,0 +1,57 @@
+/* EDITOR */
+.meme-editor{
+    display: none;
+}
+/* TOOLS */
+.txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
+    background-color: #fff;
+    border: 1.5px black solid;
+    height: 2rem;
+    padding: 0.4rem;
+    margin: 0 0.5rem 0.250rem 0;
+    outline: none;
+}
+.txt-input{
+    width: 9.5rem;
+}
+.color-input{
+    width: 2rem; 
+}
+.txt-modifiers select{
+    width: 4.5rem; 
+    font-size: 0.7rem;
+}
+.txt-modifiers img{
+    height: 100%;
+}
+.txt-modifiers button{
+    width: 2rem;
+    font-size: 1rem;
+    overflow: hidden;
+}
+.save button{
+    width: 4.5rem
+}
+
+/* CANVAS */
+.aspect-ratio-holder{
+    position: relative;
+    width: 93%;
+    padding-top: 93%;
+}
+.canvas-container{
+    max-height: 100%;
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+canvas{
+    border: 3px black solid;
+}
+
+/* FOOTER */
+.main-footer{
+    text-align: center;
+}
