@@ -24,6 +24,7 @@ function setMeme(id,type) {
 // EDITING G-MEME
 function editMemeLine(set, content, lineIdx = gMeme.selectedLineIdx) {
     gMeme.lines[lineIdx][set] = (isNaN(content)||content==='') ? content : gMeme.lines[lineIdx][set] + content;
+    if (set === 'strokeWidth'&& gMeme.lines[lineIdx].strokeWidth===0) gMeme.lines[lineIdx].strokeWidth = 1
 };
 function switchLine(idx = false) {
     if (idx === false) gMeme.selectedLineIdx = (gMeme.selectedLineIdx < gMeme.lines.length - 1) ? gMeme.selectedLineIdx + 1 : 0;
