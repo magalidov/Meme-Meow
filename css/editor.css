@@ -46,14 +46,12 @@
     right: 0;
 }
 canvas{
-    border: 3px black solid;
+    border: 2px black solid;
 }
 @media (max-width:45rem){
     .txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
         height: 2rem;
         padding: 0.4rem;
-        margin: 0 0.5rem 0.250rem 0;
-        outline: none;
     }
     .txt-input{
         width: 9.5rem;
