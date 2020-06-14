@@ -97,7 +97,7 @@
                     <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="strokeWidth" title="Decrease Stroke Size">
                         S-
                     </button>
-                    <button onclick="onSaveMeme()" class="sharing-opt" title="Save To Your Gallery">
+                    <button onclick="onSaveMeme()" class="sharing-opt" title="Save to Gallery">
                         <img src="./icons/save.png">
                     </button>
                     <a href="#" class="sharing-opt" onclick="onDownloadMeme(this)" download="" title="Download">
@@ -105,11 +105,11 @@
                             <img src="./icons/download.png">
                         </button>
                     </a>
-                    <div class="sharing-opt">
+                    <div class="sharing-opt" >
                         <form action="" method="POST" enctype="multipart/form-data"
                             onsubmit="onFacebookShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />
-                            <button class="btn" type="submit" title="Share on Facebook"><img src="./icons/facebook.png"></button>
+                            <button class="btn" type="submit"><img src="./icons/facebook.png"></button>
                             <div class="share-container"></div>
                         </form>
 
