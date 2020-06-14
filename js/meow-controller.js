@@ -116,7 +116,7 @@ function onShowGallery(gallery = 'new') {
     renderGallry(imgs)
 };
 function renderGallry(items = getImages()) {
-    console.log('items:', items)
+    if (!items) return
     var type = items[0].type
     document.querySelector('.pics-gallery').innerHTML = items.map(item => `<div style="background-image: url(${item.url})" onclick="onSetMeme('${item.id}','${type}')"></div>`).join('\n');
 }

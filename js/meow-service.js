@@ -109,7 +109,7 @@ function createSavedMemesData(dataUrl) {
     var currKeys = gImgs.find(img => img.id === gMeme.selectedImgId).keywords
     var memeToSave = { id: gMeme.id , url: dataUrl, memeSet: gMeme, dateCreated: new Date() ,type:'meme', keywords: currKeys}
     var savedMemes = []
-    if (!meows.length) {
+    if (!meows) {
         savedMemes[0]= memeToSave
         saveToStorage('meows',savedMemes)
     } else {
