@@ -1,12 +1,6 @@
 'use strict'
 console.log('Controller');
 
-window.addEventListener('resize', function (event) {
-    resizeCanvas();
-});
-document.querySelector('.saving').addEventListener('mouseover', ()=> {
-    removeEditingHighlit();
-})
 var gDrag = false
 var gOnEdit = false;
 var gElCanvas;
@@ -19,7 +13,7 @@ function onInit() {
     setKeywords();
     resizeCanvas();
     loadSavedMemsData();
-    AddEventListeners()
+    AddEventListeners();
 }
 function AddEventListeners(){
     window.addEventListener('resize', function (event) {
