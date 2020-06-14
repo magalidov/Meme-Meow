@@ -16,11 +16,7 @@
     src: url(../fonts/ubuntu.ttf);
     
 }
-@font-face {
-    font-family: impact;
-    src: url(../fonts/impact.ttf);
-    
-}
+
 /* BASE */
 *{
     box-sizing: border-box;

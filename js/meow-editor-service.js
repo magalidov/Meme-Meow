@@ -12,8 +12,10 @@ function setMeme(id,type, canvasWidth, canvasHeight) {
             selectedImgId: +id,
             selectedImgUrl: `img/${id}.jpg`,
             selectedLineIdx: 0,
-            lines: [{ txt: '', size: 50, x: (canvasWidth / 2), y: 70,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
-            { txt: '', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
+            lines: [{ txt: '', size: 50, x: 250, y: 70, canvasWidth:500,canvasHeight:500,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
+            { txt: '', size: 50, x: 250, y: 470, canvasWidth:500,canvasHeight:500, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
+            // lines: [{ txt: '', size: 50, x: (canvasWidth / 2), y: 70,canvasWidth:500,canvasHeight:500,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
+            // { txt: '', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30,canvasWidth:500,canvasHeight:500, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
         };
     } else if (type==='meme'){
         gMeme = gSavedMemes.find(meme => meme.id === id).memeSet;
@@ -28,8 +30,8 @@ function switchLine(idx = false) {
     if (idx === false) gMeme.selectedLineIdx = (gMeme.selectedLineIdx < gMeme.lines.length - 1) ? gMeme.selectedLineIdx + 1 : 0;
     else gMeme.selectedLineIdx = idx;
 }
-function newLine(canvasWidth, canvasHeight) {
-    gMeme.lines.push({ txt: '', size: 50, x: (canvasWidth / 2), y: (canvasHeight / 2), font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 });
+function newLine(canvasWidth, canvasHeight) {                                                   
+    gMeme.lines.push({ txt: '', size: 50, x: (canvasWidth / 2), y: (canvasHeight / 2),canvasWidth:canvasWidth,canvasHeight:canvasHeight, font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 });
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 function deleteCurrLine() {
@@ -59,18 +61,16 @@ function createSavedMemesData(dataUrl) {
     loadSavedMemsData();
 }
 
-// ON PROGRESS
-
-// function calibrateMeme(currWidth, currHeight){
-//     for (var i = 0; i < gMeme.lines.length ; i++){
-//         gMeme.lines[i].x = (gCurrX*currWidth)/gCurrX
-//         gMeme.lines[i].y = (gCurrY*currHeight)/gCurrY
-//         var xPercent= (gMeme.lines[i].x / currWidth)*100
-//         var yPercent= (gMeme.lines[i].y / currHeight)*100
-//         gMeme.lines[i].x = gMeme.lines[i].x * xPercent
-//         gMeme.lines[i].y = gMeme.lines[i].y * yPercent
-//     }
-// }
+function calibrateMeme(newWidth, newHeight){
+    for (var i = 0; i < gMeme.lines.length ; i++){
+        var lastCnvsW =gMeme.lines[i].canvasWidth
+        var lastCnvsH =gMeme.lines[i].canvasHeight
+        gMeme.lines[i].x = (gMeme.lines[i].x*newWidth)/lastCnvsW
+        gMeme.lines[i].y = (gMeme.lines[i].y*newHeight)/lastCnvsH
+        gMeme.lines[i].canvasWidth = newWidth
+        gMeme.lines[i].canvasHeight = newHeight
+    }
+}
 
 
 

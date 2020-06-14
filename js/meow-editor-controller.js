@@ -4,41 +4,37 @@ console.log('Controller');
 var gDrag = false
 var gOnEdit = false;
 var gElCanvas;
+var gElContainer;
 var gCtx;
 
 function onInit() {
     gElCanvas = document.getElementById('my-canvas');
+    gElContainer = document.querySelector('.canvas-container');
     gCtx = gElCanvas.getContext('2d');
     renderGallry();
     setKeywords();
-    resizeCanvas();
+    // resizeCanvas();
     loadSavedMemsData();
-    AddEventListeners();
 }
-function AddEventListeners(){
-    window.addEventListener('resize', function (event) {
+function AddEventListeners() {
+    window.addEventListener('resize', () => {
         resizeCanvas();
     });
-    var elBtns=document.querySelectorAll('.sharing-opt')
+    var elBtns = document.querySelectorAll('.sharing-opt')
     elBtns.forEach(btn => {
-        btn.addEventListener('mouseover', ()=> {
+        btn.addEventListener('mouseover', () => {
             removeEditingHighlit();
         })
     })
 }
 function resizeCanvas() {
-    if (gOnEdit) return
-    var elContainer = document.querySelector('.canvas-container');
-    gElCanvas.width = elContainer.offsetWidth;
-    gElCanvas.height = elContainer.offsetHeight;
-    var meme = getMeme();
-    if (meme) {
-        var id = (meme.type === 'item') ? meme.selectedImgId : meme.id;
-        setMeme(id, meme.type, gElCanvas.width, gElCanvas.height); // calibrateMeme(gElCanvas.width, gElCanvas.height)
-        renderMeme();
-    }
+    gElCanvas.width = gElContainer.offsetWidth;
+    gElCanvas.height = gElContainer.offsetHeight;
+    calibrateMeme(gElCanvas.width, gElCanvas.height);
+    renderMeme()
 }
 function onSetMeme(id, type) {
+    AddEventListeners();
     document.querySelector('.search-box').style.display = 'none';
     document.querySelector('.pics-gallery').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
@@ -50,7 +46,7 @@ function onSetMeme(id, type) {
 // EDIT MEME
 function onEditCurrLine(type, content) {
     var meme = getMeme()
-    meme.selectedLineIdx = (meme.selectedLineIdx===-1) ? 0 : meme.selectedLineIdx
+    meme.selectedLineIdx = (meme.selectedLineIdx === -1) ? 0 : meme.selectedLineIdx
     gOnEdit = true;
     editMemeLine(type, content);
     renderMeme();
@@ -78,7 +74,7 @@ function onDownloadMeme(elButton) {
     elButton.href = data;
     elButton.download = 'Meow-Meme';
 }
-function onSaveMeme() {   
+function onSaveMeme() {
     var dataUrl = gElCanvas.toDataURL();
     createSavedMemesData(dataUrl);
 }
@@ -89,6 +85,7 @@ function onFacebookShare(elForm, ev) {
 // RENDER MEME EDITOR
 function renderMeme() {
     var meme = getMeme();
+    console.log('meme:', meme)
     if (!meme) return;
     var elImg = new Image();
     elImg.src = `./${meme.selectedImgUrl}`;
@@ -102,7 +99,7 @@ function renderMeme() {
     };
 };
 function addText(text, x, y, size, font, align, fill, stroke, strokeWidth) {
-    text = (text==='') ? 'Your Joke' : text
+    text = (text === '') ? 'Your Joke' : text
     gCtx.font = `${size}px ${font}`;
     gCtx.textAlign = `${align}`;
     gCtx.fillStyle = `${fill}`;
@@ -116,14 +113,14 @@ function hilightEdit(x, y, size) {
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     gCtx.fillRect(0, y - size, gElCanvas.width, size + 15);
 };
-function removeEditingHighlit(){
+function removeEditingHighlit() {
     var meme = getMeme();
     meme.selectedLineIdx = -1;
     renderMeme();
 }
 function matchToolsDisplayWithCurrLine() {
     var meme = getMeme()
-    var currLine = (meme.selectedLineIdx!==-1)? meme.selectedLineIdx : 1;
+    var currLine = (meme.selectedLineIdx !== -1) ? meme.selectedLineIdx : 1;
     document.querySelector('.txt-input').value = `${meme.lines[currLine].txt}`;
     document.querySelector('.font-choice').value = `${meme.lines[currLine].font}`;
     document.querySelector('.fill-choice').value = `${meme.lines[currLine].fill}`;

@@ -78,6 +78,9 @@
     flex-flow: column;
     align-items: flex-start;
 }
+.main-nav{
+    margin-right: 1rem;
+}
 .main-header.flex{
     align-items: flex-start;
 }
