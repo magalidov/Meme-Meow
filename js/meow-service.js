@@ -34,23 +34,13 @@ function setMeme(id,type, canvasWidth, canvasHeight) {
             selectedImgId: +id,
             selectedImgUrl: `img/${id}.jpg`,
             selectedLineIdx: 0,
-            lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: 70,  font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 },
-            { txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30, font: 'impact', align: 'center', fill: 'black', stroke: 'white', strokeWidth: 2 }]
+            lines: [{ txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: 70,  font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 },
+            { txt: 'Your Joke', size: 50, x: (canvasWidth / 2), y: canvasHeight - 30, font: 'impact', align: 'center', fill: '#000000', stroke: '#ffffff', strokeWidth: 2 }]
         };
     } else if (type==='meme'){
         gMeme = gSavedMemes.find(meme => meme.id === id).memeSet;
     } 
 };
-// function calibrateMeme(currWidth, currHeight){
-    // for (var i = 0; i < gMeme.lines.length ; i++){
-        // gMeme.lines[i].x = (gCurrX*currWidth)/gCurrX
-        // gMeme.lines[i].y = (gCurrY*currHeight)/gCurrY
-        // var xPercent= (gMeme.lines[i].x / currWidth)*100
-        // var yPercent= (gMeme.lines[i].y / currHeight)*100
-        // gMeme.lines[i].x = gMeme.lines[i].x * xPercent
-        // gMeme.lines[i].y = gMeme.lines[i].y * yPercent
-    // }
-// }
 
 // EDITING G-MEME
 function editMemeLine(set, content, lineIdx = gMeme.selectedLineIdx) {
@@ -126,6 +116,17 @@ function loadSavedMemsData(){
     var meows = loadFromStorage('meows');
     gSavedMemes = (meows) ? meows : null;
 }
+
+// function calibrateMeme(currWidth, currHeight){
+//     for (var i = 0; i < gMeme.lines.length ; i++){
+//         gMeme.lines[i].x = (gCurrX*currWidth)/gCurrX
+//         gMeme.lines[i].y = (gCurrY*currHeight)/gCurrY
+//         var xPercent= (gMeme.lines[i].x / currWidth)*100
+//         var yPercent= (gMeme.lines[i].y / currHeight)*100
+//         gMeme.lines[i].x = gMeme.lines[i].x * xPercent
+//         gMeme.lines[i].y = gMeme.lines[i].y * yPercent
+//     }
+// }
 
 
 

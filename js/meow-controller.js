@@ -6,6 +6,9 @@ var gOnEdit = false;
 var gElCanvas;
 var gCtx;
 
+window.addEventListener('resize', function (event) {
+    resizeCanvas();
+});
 function onInit() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
@@ -19,22 +22,20 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
     var meme = getMeme();
-    if (meme){
-        var id = (meme.type==='item')? meme.selectedImgId : meme.id;
-        setMeme(id, meme.type , gElCanvas.width, gElCanvas.height); 
+    if (meme) {
+        var id = (meme.type === 'item') ? meme.selectedImgId : meme.id;
+        setMeme(id, meme.type, gElCanvas.width, gElCanvas.height);
         // calibrateMeme(gElCanvas.width, gElCanvas.height)
         renderMeme();
     }
 }
-window.addEventListener('resize', function (event) {
-    resizeCanvas();
-});
 function onSetMeme(id, type) {
     document.querySelector('.search-box').style.display = 'none';
     document.querySelector('.pics-gallery').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
     setMeme(id, type, gElCanvas.width, gElCanvas.height);
     resizeCanvas();
+    matchToolsDisplayWithCurrLine()
 };
 
 
@@ -47,7 +48,7 @@ function onDownloadMeme(elButton) {
     elButton.href = data;
     elButton.download = 'Meow-Meme';
 }
-function onSaveMeme() {                       //NEEDS A FIX
+function onSaveMeme() {                       
     var dataUrl = gElCanvas.toDataURL();
     createSavedMemesData(dataUrl);
 }
@@ -55,16 +56,17 @@ function onFacebookShare(elForm, ev) {
     ev.preventDefault;
     uploadImg(elForm, ev, gElCanvas);
 }
-
 // EDIT MEME
 function onEditCurrLine(type, content) {
     gOnEdit = true;
     editMemeLine(type, content);
     renderMeme();
+    matchToolsDisplayWithCurrLine();
 };
 function onSwitchLine() {
     switchLine();
     renderMeme();
+    matchToolsDisplayWithCurrLine()
 }
 // ADD REMOVE
 function onAddLine() {
@@ -105,7 +107,6 @@ function renderSearchBox(savedKey = '', inputType = '') {
     ${keysHTML}`;
     document.querySelector('.search-box').innerHTML = strHTML;
 }
-
 // RENDER GALLERY
 function onShowGallery(gallery = 'new') {
     if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return };
@@ -149,7 +150,14 @@ function hilightEdit(x, y, size) {
     gCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
     gCtx.fillRect(0, y - size, gElCanvas.width, size + 20);
 };
-
+function matchToolsDisplayWithCurrLine() {
+    var meme = getMeme()
+    var currLine = meme.selectedLineIdx;
+    document.querySelector('.txt-input').value = `${meme.lines[currLine].txt}`;
+    document.querySelector('.font-choice').value = `${meme.lines[currLine].font}`;
+    document.querySelector('.fill-choice').value = `${meme.lines[currLine].fill}`;
+    document.querySelector('.stroke-choice').value = `${meme.lines[currLine].stroke}`;
+}
 // DRAG OBJECTS
 function onMouseAboveObject(ev) {
     if (gDrag) return;
@@ -171,13 +179,11 @@ function onPickObject(ev) {
     }
     var meme = getMeme();
     var objectIdx = meme.lines.findIndex(line => ((line.y - line.size) < offsetY && offsetY < line.y));
-    document.querySelector('.txt-input').value = `${meme.lines[objectIdx].txt}`;
-    switchLine(objectIdx);
-    renderMeme();
+    onSwitchLine(objectIdx);
 }
 function onDrag(ev) {
     var meme = getMeme();
-    if (gDrag === false) return;
+    if (!gDrag) return;
     if (meme.selectedLineIdx < 0) return;
     gOnEdit = true;
     if (ev.type === 'touchmove' || ev.type === 'touchstart') {

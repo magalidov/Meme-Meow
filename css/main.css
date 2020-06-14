@@ -1,3 +1,6 @@
+@import "./base.css";
+@import "./layout.css";
+@import "./editor.css";
 /* HEADER */
 .main-header{
     margin: 10px auto;
@@ -53,6 +56,12 @@
     border-radius: 10px;
     height: 100%;
 }
+/* FOOTER */
+.main-footer{
+    text-align: center;
+    margin-top: 2rem;
+}
+
 /* MEDIA QUERIES */
 /* TABLET */
 @media (max-width:45rem){

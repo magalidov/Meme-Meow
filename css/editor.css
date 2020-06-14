@@ -6,31 +6,29 @@
 .txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
     background-color: #fff;
     border: 1.5px black solid;
-    height: 2rem;
-    padding: 0.4rem;
+    height: 2.5rem;
+    padding: 0.6rem;
     margin: 0 0.5rem 0.250rem 0;
     outline: none;
 }
 .txt-input{
-    width: 9.5rem;
+    width: 11.5rem;
 }
 .color-input{
-    width: 2rem; 
+    width: 2.5rem; 
 }
 .txt-modifiers select{
-    width: 4.5rem; 
-    font-size: 0.7rem;
+    width: 5.5rem; 
+    font-size: 0.6rem;
+    font-weight: bold;
 }
 .txt-modifiers img{
     height: 100%;
 }
 .txt-modifiers button{
-    width: 2rem;
+    width: 2.5rem;
     font-size: 1rem;
     overflow: hidden;
-}
-.save button{
-    width: 4.5rem
 }
 
 /* CANVAS */
@@ -50,8 +48,26 @@
 canvas{
     border: 3px black solid;
 }
+@media (max-width:45rem){
+    .txt-modifiers button,.txt-modifiers input, .txt-modifiers select, .txt-input{
+        height: 2rem;
+        padding: 0.4rem;
+        margin: 0 0.5rem 0.250rem 0;
+        outline: none;
+    }
+    .txt-input{
+        width: 9.5rem;
+    }
+    .color-input{
+        width: 2rem; 
+    }
+    .txt-modifiers select{
+        width: 4.5rem; 
+    }
+    .txt-modifiers button{
+        width: 2rem;
+    }
+}
+@media (max-width:27rem){
 
-/* FOOTER */
-.main-footer{
-    text-align: center;
 }
