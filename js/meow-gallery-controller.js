@@ -1,6 +1,6 @@
 'use strict'
 console.log('Gallery-Controller');
-
+var gDisplayGallery = 'new'
 // ON SEARCH TYPE
 function onStartSearch(key, inputType = '') {
     key = key.toLowerCase();
@@ -29,17 +29,35 @@ function renderSearchBox(savedKey = '', inputType = '') {
     ${keysHTML}`;
     document.querySelector('.search-box').innerHTML = strHTML;
 }
+// Modal
+function onShowGallery(gallery) {
+    gDisplayGallery = gallery
+    if (!gOnEdit) showGallery()
+    else openModal()
+};
+function openModal(){
+    document.querySelector('.unsaved-warning-modal').style.display='block';
+}
+function onCloseModal(){
+    document.querySelector('.unsaved-warning-modal').style.display='none'
+}
+function onContinueToGallery(save=false){
+    if (save) onSaveMeme()
+    onCloseModal()
+    showGallery()
+}
 // RENDER GALLERY
-function onShowGallery(gallery = 'new') {
-    if (gOnEdit) { if (!confirm('Unsaved work will be lost')) return };
+function showGallery(){
     gOnEdit = false;
     document.querySelector('.pics-gallery').style.display = 'grid';
     document.querySelector('.meme-editor').style.display = 'none';
-    var imgs = (gallery === 'new') ? getImages() : getSavedMemes();//loadFromStorage('meows')
+    var imgs = (gDisplayGallery === 'new') ? getImages() : getSavedMemes();
     renderGallry(imgs)
-};
+}
+
 function renderGallry(items = getImages()) {
     if (!items) return;
+    // var deleteButton = (items[0].type)? `<button class="delete-saved-btn" onclick="onDeleteSavedMeme()"></button>`
     var type = items[0].type;
     document.querySelector('.pics-gallery').innerHTML = items.map(item => `<div style="background-image: url(${item.url})" onclick="onSetMeme('${item.id}','${type}')"></div>`).join('\n');
 }

@@ -25,8 +25,14 @@
         <!-- ****** Search Keys Renders Here ****** -->
     </section>
 
+    <div class="unsaved-warning-modal">
+        <p>Unsaved Work Will Be Lost</p>
+        <button onclick="onContinueToGallery()">OK</button>
+        <button onclick="onContinueToGallery(true)">SAVE</button>
+        <button onclick="onCloseModal()">CANCEL</button>
+    </div>
     <section class="main-container container">
-
+        
         <section class="pics-gallery grid">
             <!-- ****** Pictures Renders Here ****** -->
         </section>

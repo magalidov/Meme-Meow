@@ -46,6 +46,24 @@
     height: 1.5rem;
 }
 /* GALLERY */
+.unsaved-warning-modal{
+    display: none;
+    text-align: center;
+    border: 1.5px black solid;
+    background-color: rgb(235, 85, 85);
+    position: absolute;
+    font-size: 1.2rem;
+    z-index:1;
+    width: 100%;
+    top: 30vh;
+    padding: 10px 0;
+}
+.unsaved-warning-modal button{
+    background-color: #fff;
+border: 1.5px black solid;
+outline: none;
+
+}
 .pics-gallery{
 }
 .pics-gallery div{
