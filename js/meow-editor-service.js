@@ -17,6 +17,7 @@ function setMeme(id,type) {
         };
     } else if (type==='meme'){
         gMeme = gSavedMemes.find(meme => meme.id === id).memeSet;
+        gMeme.id = makeId()
     } 
 };
 
