@@ -91,15 +91,15 @@
                     <button onmousedown="onEditCurrLine(this.dataset.type,-1)" data-type="strokeWidth">
                         S-
                     </button>
-                    <button onclick="onSaveMeme()">
+                    <button onclick="onSaveMeme()" class="sharing-opt">
                         <img src="./icons/save.png">
                     </button>
-                    <a href="#" class="download" onclick="onDownloadMeme(this)" download="">
+                    <a href="#" class="sharing-opt" onclick="onDownloadMeme(this)" download="">
                         <button>
                             <img src="./icons/download.png">
                         </button>
                     </a>
-                    <div class="facebook-publish">
+                    <div class="sharing-opt">
                         <form action="" method="POST" enctype="multipart/form-data"
                             onsubmit="onFacebookShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />

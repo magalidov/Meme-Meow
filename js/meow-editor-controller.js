@@ -1,14 +1,17 @@
 'use strict'
 console.log('Controller');
 
+window.addEventListener('resize', function (event) {
+    resizeCanvas();
+});
+document.querySelector('.saving').addEventListener('mouseover', ()=> {
+    removeEditingHighlit();
+})
 var gDrag = false
 var gOnEdit = false;
 var gElCanvas;
 var gCtx;
 
-window.addEventListener('resize', function (event) {
-    resizeCanvas();
-});
 function onInit() {
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
@@ -16,6 +19,18 @@ function onInit() {
     setKeywords();
     resizeCanvas();
     loadSavedMemsData();
+    AddEventListeners()
+}
+function AddEventListeners(){
+    window.addEventListener('resize', function (event) {
+        resizeCanvas();
+    });
+    var elBtns=document.querySelectorAll('.sharing-opt')
+    elBtns.forEach(btn => {
+        btn.addEventListener('mouseover', ()=> {
+            removeEditingHighlit();
+        })
+    })
 }
 function resizeCanvas() {
     if (gOnEdit) return
@@ -40,6 +55,8 @@ function onSetMeme(id, type) {
 
 // EDIT MEME
 function onEditCurrLine(type, content) {
+    var meme = getMeme()
+    meme.selectedLineIdx = (meme.selectedLineIdx===-1) ? 0 : meme.selectedLineIdx
     gOnEdit = true;
     editMemeLine(type, content);
     renderMeme();
@@ -63,18 +80,15 @@ function onDeleteLine() {
 }
 // SAVING OPTIONS
 function onDownloadMeme(elButton) {
-    removeEditingHighlit()
     var data = gElCanvas.toDataURL();
     elButton.href = data;
     elButton.download = 'Meow-Meme';
 }
 function onSaveMeme() {   
-    removeEditingHighlit()                    
     var dataUrl = gElCanvas.toDataURL();
     createSavedMemesData(dataUrl);
 }
 function onFacebookShare(elForm, ev) {
-    removeEditingHighlit()
     ev.preventDefault;
     uploadImg(elForm, ev, gElCanvas);
 }
