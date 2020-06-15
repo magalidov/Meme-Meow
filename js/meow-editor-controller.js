@@ -75,6 +75,10 @@ function onDownloadMeme(elButton) {
     elButton.download = 'Meow-Meme';
 }
 function onSaveMeme() {
+    var elBtn=document.querySelector(['.saved']);
+    elBtn.classList.add('animate-pop')
+    setTimeout(()=>elBtn.classList.remove('animate-pop'),1000)
+    gOnEdit= false;
     var dataUrl = gElCanvas.toDataURL();
     createSavedMemesData(dataUrl);
 }

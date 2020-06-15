@@ -58,7 +58,6 @@
     top: 30vh;
     padding: 10px 0;
 }
-
 .unsaved-warning-modal button{
     background-color: #fff;
 border: 1.5px black solid;
@@ -74,6 +73,9 @@ outline: none;
     background-size: cover;
     border-radius: 10px;
     height: 100%;
+}
+.pics-gallery div:hover{
+    border: 1.5px rgb(255, 255, 255) solid;
 }
 /* FOOTER */
 .main-footer{

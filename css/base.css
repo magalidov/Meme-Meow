@@ -20,7 +20,15 @@
     font-family: impact;
     src: url(../fonts/impact.ttf);
 }
-
+/* ANIMATIONS */
+@keyframes pop {
+    0%   {transform: scaleX(1) scaleY(1);}
+    50%  {transform: scaleX(1.2) scaleY(1.2);}
+    100% {transform: scaleX(1) scaleY(1);}
+}
+.animate-pop{
+    animation: pop 1s infinite;
+}
 /* BASE */
 *{
     box-sizing: border-box;
